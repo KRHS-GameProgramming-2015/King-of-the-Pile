@@ -1,7 +1,6 @@
 import sys, pygame, math
 pygame.init()
 
-
 def distance(pt1, pt2):
     x1 = pt1[0]
     y1 = pt1[1]
