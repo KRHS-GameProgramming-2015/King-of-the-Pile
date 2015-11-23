@@ -1,1 +1,1 @@
-import Player.py
+from Player import Player
