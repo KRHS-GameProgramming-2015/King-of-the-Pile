@@ -25,6 +25,8 @@ class Ball():
         
         self.living = True
         
+        self.mass = 0
+        
     def die(self):
         self.living = False
 
