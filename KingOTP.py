@@ -14,7 +14,7 @@ r = 255
 g = 255
 b = 255
 
-##bgColor = BgColor()
+#bgColor = BgColor()
 
 screen = pygame.display.set_mode(size)#pygame.FULLSCREEN )
 

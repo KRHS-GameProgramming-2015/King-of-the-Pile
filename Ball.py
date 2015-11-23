@@ -24,9 +24,7 @@ class Ball():
         self.rect = self.rect.move(pos)
         
         self.living = True
-        
-        self.mass = 0
-        
+
     def die(self):
         self.living = False
 
@@ -45,6 +43,7 @@ class Ball():
             else:
                 self.frame = 0
             self.image = self.images[self.frame]
+    
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
@@ -66,6 +65,7 @@ class Ball():
                 self.speedy = -self.speedy
                 selfdidBounceY = True
                 self.move()
+
         
     def collideBall(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
@@ -83,8 +83,6 @@ class Ball():
                             self.speedy = -self.speedy
                             self.didBounceY = True
                             self.move()
-                    return True
-        return False
                     
         
     def distanceTo(self, pt):
@@ -93,9 +91,3 @@ class Ball():
         x2 = pt[0]
         y2 = pt[1]
         return math.sqrt((x1-x2)**2+(y1-y2)**2)
-        
-        
-        
-        
-        
-            
