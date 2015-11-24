@@ -24,7 +24,7 @@ balls = []
 ballTimer = 0
 ballTimerMax = .685 * 60
 
-player = PlayerBall(["Ball/ball.png"],[10,10],[width/2, height/2])
+player = PlayerBall(["playerBall/ball.png"],[10,10],[width/2, height/2])
 
 
 
@@ -88,10 +88,10 @@ while True:
             
         ballPos = [random.randint(100, width-100),
                      random.randint(100, height-100)]
-        balls += [Ball(["ball.png",
-                        "balla.png",
-                        "ballb.png",
-                        "ballc.png"],
+        balls += [Ball(["Ball/ball.png",
+						"Ball/balla.png",
+						"Ball/ballb.png",
+						"Ball/ballc.png"],
                        ballSpeed,
                        ballPos)]
         #print len(balls), clock.get_fps()
