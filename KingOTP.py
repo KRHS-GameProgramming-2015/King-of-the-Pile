@@ -1,5 +1,6 @@
 #eddy commit test
 import sys, pygame, math, random
+from BgColor import *
 from Ball import *
 from Player import *
 #from Predator import *
@@ -15,16 +16,16 @@ r = 255
 g = 255
 b = 255
 
-#bgColor = BgColor()
-bgColor = r,g,b = 0,0,0
+bgColor = BgColor()
+#bgColor = r,g,b = 0,0,0
 
 screen = pygame.display.set_mode(size)#pygame.FULLSCREEN )
 
 balls = []
 ballTimer = 0
-ballTimerMax = .685 * 60
+ballTimerMax = .5 * 60
 
-player = PlayerBall(["playerBall/ball.png"],[10,10],[width/2, height/2])
+player = PlayerBall(["playerBall/ball.png"],[7,7],[width/2, height/2])
 
 
 
@@ -114,8 +115,8 @@ while True:
             balls.remove(ball)
                     
     
-    #bgColor.fade()
-    screen.fill(bgColor)#bgColor.color())
+    bgColor.fade()
+    screen.fill(bgColor.color())
     
     for ball in balls:
         screen.blit(ball.image, ball.rect)
