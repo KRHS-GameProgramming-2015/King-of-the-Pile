@@ -6,8 +6,10 @@ class Ball():
         self.speedy = speed[1]
         self.speed = [self.speedx, self.speedy]
         
+        print images
         self.images = []
         for image in images:
+            print image
             self.images += [pygame.image.load(image)]
         self.image = self.images[0]
         self.rect = self.image.get_rect()

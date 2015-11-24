@@ -16,6 +16,7 @@ g = 255
 b = 255
 
 #bgColor = BgColor()
+bgColor = r,g,b = 0,0,0
 
 screen = pygame.display.set_mode(size)#pygame.FULLSCREEN )
 
@@ -114,7 +115,7 @@ while True:
                     
     
     #bgColor.fade()
-    #screen.fill(bgColor.color())
+    screen.fill(bgColor)#bgColor.color())
     
     for ball in balls:
         screen.blit(ball.image, ball.rect)

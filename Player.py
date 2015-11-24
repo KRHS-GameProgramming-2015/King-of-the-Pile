@@ -2,8 +2,8 @@ import sys, pygame, math
 from Ball import Ball
 
 class PlayerBall(Ball):
-    def __init__(self, image, maxSpeed, pos = [0,0]):
-        Ball.__init__(self, [image], [0,0], pos)
+    def __init__(self, images, maxSpeed, pos = [0,0]):
+        Ball.__init__(self, images, [0,0], pos)
         self.maxSpeedx = maxSpeed[0]
         self.maxSpeedy = maxSpeed[1]
         self.targetx = self.rect.centerx
