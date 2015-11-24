@@ -8,8 +8,8 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 600 #1280 
-height = 600 #1024
+width = 1366 
+height = 768
 size = width, height
 
 r = 255
@@ -19,13 +19,13 @@ b = 255
 bgColor = BgColor()
 #bgColor = r,g,b = 0,0,0
 
-screen = pygame.display.set_mode(size)#pygame.FULLSCREEN )
+screen = pygame.display.set_mode(size, pygame.FULLSCREEN )
 
 balls = []
 ballTimer = 0
-ballTimerMax = .5 * 60
+ballTimerMax = .625 * 60
 
-player = PlayerBall(["playerBall/ball.png"],[7,7],[width/2, height/2])
+player = PlayerBall(["playerBall/ball.png"],[10,10],[width/2, height/2])
 
 
 
