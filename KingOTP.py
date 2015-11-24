@@ -1,4 +1,3 @@
-#eddy commit test
 import sys, pygame, math, random
 from BgColor import *
 from Ball import *
