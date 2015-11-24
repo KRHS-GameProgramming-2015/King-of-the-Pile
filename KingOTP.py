@@ -24,7 +24,7 @@ balls = []
 ballTimer = 0
 ballTimerMax = .685 * 60
 
-player = PlayerBall(["ball.png"],[10,10],[width/2, height/2])
+player = PlayerBall(["Ball/ball.png"],[10,10],[width/2, height/2])
 
 
 
@@ -42,10 +42,10 @@ while count < 4:
     ballPos = [random.randint(100, width-100),
                  random.randint(100, height-100)]
     #ballImage = ballImages[random.randint(0, len(ballImages)-1)]
-    balls += [Ball(["ball.png",
-                    "balla.png",
-                    "ballb.png",
-                    "ballc.png"],
+    balls += [Ball(["Ball/ball.png",
+                    "Ball/balla.png",
+                    "Ball/ballb.png",
+                    "Ball/ballc.png"],
                    ballSpeed,
                    ballPos)]
     count += 1
