@@ -6,8 +6,12 @@ class PlayerBall(Ball):
         Ball.__init__(self, images, [0,0], pos)
         self.maxSpeedx = maxSpeed[0]
         self.maxSpeedy = maxSpeed[1]
-        self.targetx = self.rect.centerx
-        self.targety = self.rect.centery
+        self.realSpeedx = self.speedx
+        self.realSpeedy = self.speedy
+        self.accx = .2 # Higher number means less acceleration effect ie follows mouse movments more closly any number greater than 1 causes more jitter 
+        self.accy = .2
+        self.viscosityX = 20
+        self.viscosityY = 20
   
     def collideScreen(self, size):
         width = size[0]
@@ -33,57 +37,68 @@ class PlayerBall(Ball):
                     return True
         return False
     
-    def go(self, direction):
-        count = 0
-        count1 = 0
-        count2 = 0
-        count3 = 0
+    def go(self, direction, mLocation):
         if direction == "up":
-            self.speedy = -self.maxSpeedy - count
-            count +=1
+            self.realSpeedy += -self.accy
+            self.speedy = int(round(self.realSpeedy))
         elif direction == "down":
-            self.speedy = self.maxSpeedy + count1
-            count1 +=1
-        if direction == "right":
-            self.speedx = self.maxSpeedx + count2
-            count2 +=1
-        elif direction == "left":
-            self.speedx = -self.maxSpeedx - count3
-            count3 +=1
-        
-        if direction == "stop up":
-            self.speedy = 0
-            count = 0
-        elif direction == "stop down":
-            self.speedy = 0
-            count1 = 0
-        if direction == "stop right":
-            self.speedx = 0
-            count2 = 0
-        elif direction == "stop left":
-            self.speedx = 0
-            count3 = 0
+            self.realSpeedy += self.accy
+            self.speedy = int(round(self.realSpeedy))
             
-    def move(self):
-        if self.rect.centerx > self.targetx:
-            self.speedx = -self.maxSpeedx
-        elif self.rect.centerx < self.targetx:
-            self.speedx = self.maxSpeedx
-        else:
-            self.speedx = 0
+        if direction == "right":
+            self.realSpeedx += self.accx
+            self.speedx = int(round(self.realSpeedx))
+        elif direction == "left":
+            self.realSpeedx += -self.accx
+            self.speedx = int(round(self.realSpeedx))
+                    
+        if direction == "stop up":
+            self.realSpeedy += 2*self.accy
+            self.speedy = int(round(self.realSpeedy))
+        elif direction == "stop down":
+            self.realSpeedy += 2*-self.accy
+            self.speedy = int(round(self.realSpeedy))
+        if direction == "stop right":
+            self.realSpeedx += 2*-self.accx
+            self.speedx = int(round(self.realSpeedx))
+        elif direction == "stop left":
+            self.realSpeedx += 2*self.accx
+            self.speedx = int(round(self.realSpeedx))
+            
+        self.speedx += (mLocation[0] - self.rect.centerx)/self.viscosityX*self.accx
+        self.speedy += (mLocation[1] - self.rect.centery)/self.viscosityY*self.accy
+            
+    #def move(self):
+        #if self.rect.centerx > self.targetx:
+            #self.speedx = -self.maxSpeedx
+        #elif self.rect.centerx < self.targetx:
+            #self.speedx = self.maxSpeedx
+        #else:
+            #self.speedx = 0
         
-        if self.rect.centery > self.targety:
-            self.speedy = -self.maxSpeedy
-        elif self.rect.centery < self.targety:
-            self.speedy = self.maxSpeedy
-        else:
-            self.speedy = 0
+        #if self.rect.centery > self.targety:
+            #self.speedy = -self.maxSpeedy
+        #elif self.rect.centery < self.targety:
+            #self.speedy = self.maxSpeedy
+        #else:
+            #self.speedy = 0
         
-        Ball.move(self)
+        #Ball.move(self)
     
     def follow(self, mLocation):
-        self.targetx = mLocation[0]
-        self.targety = mLocation[1]
+        if self.rect.centerx > mLocation[0]:
+            self.go("left", mLocation)
+            
+        if self.rect.centerx < mLocation[0]:
+            self.go("right", mLocation)
+            
+        if self.rect.centery < mLocation[1]:
+            self.go("down", mLocation)\
+            
+        if self.rect.centery > mLocation[1]:
+            self.go("up", mLocation)
+            
+        print self.rect.centerx, self.rect.centery
             
             
             
