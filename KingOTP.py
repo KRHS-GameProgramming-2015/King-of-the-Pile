@@ -47,6 +47,7 @@ while count < 4:
                     "Ball/ballb.png",
                     "Ball/ballc.png"],
                    ballSpeed,
+                   5,
                    ballPos)]
     count += 1
 
@@ -93,6 +94,7 @@ while True:
 						"Ball/ballb.png",
 						"Ball/ballc.png"],
                        ballSpeed,
+					   5,
                        ballPos)]
         #print len(balls), clock.get_fps()
     

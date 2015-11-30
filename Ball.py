@@ -1,7 +1,7 @@
 import sys, pygame, math
 
 class Ball():
-    def __init__(self, images, speed, pos=[0,0]):
+    def __init__(self, images, speed, mass, pos=[0,0]):
         self.speedx = speed[0]
         self.speedy = speed[1]
         self.speed = [self.speedx, self.speedy]
@@ -26,6 +26,8 @@ class Ball():
         self.rect = self.rect.move(pos)
         
         self.living = True
+        
+        self.mass = mass
 
     def die(self):
         self.living = False

@@ -3,15 +3,15 @@ from Ball import Ball
 
 class PlayerBall(Ball):
     def __init__(self, images, maxSpeed, pos = [0,0]):
-        Ball.__init__(self, images, [0,0], pos)
+        Ball.__init__(self, images, [0,0], 5, pos)
         self.maxSpeedx = maxSpeed[0]
         self.maxSpeedy = maxSpeed[1]
         self.realSpeedx = self.speedx
         self.realSpeedy = self.speedy
-        self.accx = .2 # Higher number means less acceleration effect ie follows mouse movments more closly any number greater than 1 causes more jitter 
-        self.accy = .2
-        self.viscosityX = 20
-        self.viscosityY = 20
+        self.accx = .1 # Higher number means less acceleration effect ie follows mouse movments more closly any number greater than 1 causes more jitter 
+        self.accy = .1
+        #self.viscosityX = 4
+        #self.viscosityY = 4
   
     def collideScreen(self, size):
         width = size[0]
@@ -51,22 +51,9 @@ class PlayerBall(Ball):
         elif direction == "left":
             self.realSpeedx += -self.accx
             self.speedx = int(round(self.realSpeedx))
-                    
-        if direction == "stop up":
-            self.realSpeedy += 2*self.accy
-            self.speedy = int(round(self.realSpeedy))
-        elif direction == "stop down":
-            self.realSpeedy += 2*-self.accy
-            self.speedy = int(round(self.realSpeedy))
-        if direction == "stop right":
-            self.realSpeedx += 2*-self.accx
-            self.speedx = int(round(self.realSpeedx))
-        elif direction == "stop left":
-            self.realSpeedx += 2*self.accx
-            self.speedx = int(round(self.realSpeedx))
             
-        self.speedx += (mLocation[0] - self.rect.centerx)/self.viscosityX*self.accx
-        self.speedy += (mLocation[1] - self.rect.centery)/self.viscosityY*self.accy
+        self.speedx += (mLocation[0] - self.rect.centerx)/8 * self.accx
+        self.speedy += (mLocation[1] - self.rect.centery)/8 * self.accy
             
     #def move(self):
         #if self.rect.centerx > self.targetx:
