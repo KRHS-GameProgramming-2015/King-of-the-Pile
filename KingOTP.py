@@ -32,20 +32,12 @@ count = 0
 while count < 4:
 
     ballTimer = 0
-    ballSpeed = [random.randint(-5, 5),
-                 random.randint(-5, 5)]
-    if ballSpeed[0] == 0:
-        ballSpeed[0] = 1
-    if ballSpeed[1] == 0:
-        ballSpeed[1] = 1
+    ballSpeed = [0,0]
         
     ballPos = [random.randint(100, width-100),
                  random.randint(100, height-100)]
     #ballImage = ballImages[random.randint(0, len(ballImages)-1)]
-    balls += [Ball(["Ball/ball.png",
-                    "Ball/balla.png",
-                    "Ball/ballb.png",
-                    "Ball/ballc.png"],
+    balls += [Ball(["Ball/food.png"],
                    ballSpeed,
                    5,
                    ballPos)]
@@ -80,19 +72,11 @@ while True:
     ballTimer += 1
     if ballTimer >= ballTimerMax:
         ballTimer = 0
-        ballSpeed = [random.randint(-5, 5),
-                     random.randint(-5, 5)]
-        if ballSpeed[0] == 0:
-            ballSpeed[0] = 1
-        if ballSpeed[1] == 0:
-            ballSpeed[1] = 1
+        ballSpeed = [0,0]
             
         ballPos = [random.randint(100, width-100),
                      random.randint(100, height-100)]
-        balls += [Ball(["Ball/ball.png",
-						"Ball/balla.png",
-						"Ball/ballb.png",
-						"Ball/ballc.png"],
+        balls += [Ball(["Ball/food.png"],
                        ballSpeed,
 					   5,
                        ballPos)]
