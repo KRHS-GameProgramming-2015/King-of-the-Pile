@@ -22,7 +22,7 @@ screen = pygame.display.set_mode(size, pygame.FULLSCREEN )
 
 balls = []
 ballTimer = 0
-ballTimerMax = .625 * 60
+ballTimerMax = 1 * 60
 
 player = PlayerBall(["playerBall/ball.png"],[10,10],[width/2, height/2])
 
