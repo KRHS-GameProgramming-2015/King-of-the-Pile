@@ -39,7 +39,7 @@ while count < 4:
     #ballImage = ballImages[random.randint(0, len(ballImages)-1)]
     balls += [Ball(["Ball/food.png"],
                    ballSpeed,
-                   5,
+                   1,
                    ballPos)]
     count += 1
 
@@ -78,7 +78,7 @@ while True:
                      random.randint(100, height-100)]
         balls += [Ball(["Ball/food.png"],
                        ballSpeed,
-					   5,
+					   1,
                        ballPos)]
         #print len(balls), clock.get_fps()
     
@@ -90,6 +90,8 @@ while True:
     for first in balls:
         if player.collideBall(first):
              first.die()
+             player.mass += first.mass
+             print player.mass
         else:
             for second in balls:
                 if first != second:

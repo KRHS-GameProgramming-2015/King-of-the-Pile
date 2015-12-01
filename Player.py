@@ -88,7 +88,7 @@ class PlayerBall(Ball):
         if self.rect.centery > mLocation[1]:
             self.go("up", mLocation)
             
-        print self.rect.centerx, self.rect.centery
+        #print self.rect.centerx, self.rect.centery
             
             
             
