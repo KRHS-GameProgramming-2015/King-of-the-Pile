@@ -26,7 +26,10 @@ ballTimerMax = 1 * 60
 
 player = PlayerBall(["playerBall/ball.png"],[10,10],[width/2, height/2])
 
-
+ballImages = ["Ball/Food.png",
+              "Ball/Food-fire.png",
+              "Ball/Food-icy.png",
+              "Ball/Food-ocean.png"]
 
 count = 0
 while count < 4:
@@ -36,8 +39,9 @@ while count < 4:
         
     ballPos = [random.randint(100, width-100),
                  random.randint(100, height-100)]
-    #ballImage = ballImages[random.randint(0, len(ballImages)-1)]
-    balls += [Ball(["Ball/food.png"],
+
+    ballImage = ballImages[random.randint(0, len(ballImages)-1)]
+    balls += [Ball([ballImage],
                    ballSpeed,
                    1,
                    ballPos)]
@@ -76,10 +80,11 @@ while True:
             
         ballPos = [random.randint(100, width-100),
                      random.randint(100, height-100)]
-        balls += [Ball(["Ball/food.png"],
-                       ballSpeed,
-					   1,
-                       ballPos)]
+        ballImage = ballImages[random.randint(0, len(ballImages)-1)]
+        balls += [Ball([ballImage],
+               ballSpeed,
+               1,
+               ballPos)]
         #print len(balls), clock.get_fps()
     
     player.update(size)
