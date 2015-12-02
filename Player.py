@@ -2,8 +2,9 @@ import sys, pygame, math
 from Ball import Ball
 
 class PlayerBall(Ball):
-    def __init__(self, images, maxSpeed, pos = [0,0], mass = 5):
+    def __init__(self, images, maxSpeed, pos = [0,0], mass = 50):
         Ball.__init__(self, images, [0,0], mass, pos)
+        self.image = pygame.transform.scale(self.image, (mass, mass))
         self.maxSpeedx = maxSpeed[0]
         self.maxSpeedy = maxSpeed[1]
         self.realSpeedx = self.speedx
@@ -12,8 +13,8 @@ class PlayerBall(Ball):
         self.accy = .1
         #self.viscosityX = 4
         #self.viscosityY = 4
-        self.accx = self.accx/(mass/5)
-        self.accy = self.accy/(mass/5)
+        self.accx = self.accx/(mass/50)
+        self.accy = self.accy/(mass/50)
         self.mass = mass
   
     def collideScreen(self, size):

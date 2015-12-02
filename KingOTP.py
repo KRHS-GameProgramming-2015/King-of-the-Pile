@@ -43,7 +43,7 @@ while count < 4:
     ballImage = ballImages[random.randint(0, len(ballImages)-1)]
     balls += [Ball([ballImage],
                    ballSpeed,
-                   1,
+                   10,
                    ballPos)]
     count += 1
 
@@ -83,7 +83,7 @@ while True:
         ballImage = ballImages[random.randint(0, len(ballImages)-1)]
         balls += [Ball([ballImage],
                ballSpeed,
-               1,
+               10,
                ballPos)]
         #print len(balls), clock.get_fps()
     
@@ -95,8 +95,9 @@ while True:
     for first in balls:
         if player.collideBall(first):
              first.die()
-             player.mass += first.mass
+             player.mass += first.mass/10
              print player.mass
+             player.image = pygame.transform.scale(player.image, (player.mass, player.mass))
         else:
             for second in balls:
                 if first != second:

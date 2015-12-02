@@ -13,6 +13,8 @@ class Ball():
             self.images += [pygame.image.load(image)]
         self.image = self.images[0]
         self.rect = self.image.get_rect()
+        self.width,self.height = self.image.get_size()
+        self.image = pygame.transform.scale(self.image, (mass, mass))
         self.radius = self.rect.width/2 - 2
         
         self.frame = 0
@@ -28,8 +30,10 @@ class Ball():
         self.living = True
         
         self.mass = mass
+        
 
     def die(self):
+        
         self.living = False
 
     def update(self, size):

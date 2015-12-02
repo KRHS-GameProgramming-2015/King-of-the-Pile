@@ -13,7 +13,7 @@ class PlayerBall(Ball):
         self.accy = .1
         #self.viscosityX = 4
         #self.viscosityY = 4
-		self.accx = self.accx/(mass/5)
+        self.accx = self.accx/(mass/5)
         self.accy = self.accy/(mass/5)
         self.mass = mass
   
