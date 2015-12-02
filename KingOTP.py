@@ -32,22 +32,14 @@ count = 0
 while count < 4:
 
     ballTimer = 0
-    ballSpeed = [random.randint(-5, 5),
-                 random.randint(-5, 5)]
-    if ballSpeed[0] == 0:
-        ballSpeed[0] = 1
-    if ballSpeed[1] == 0:
-        ballSpeed[1] = 1
+    ballSpeed = [0,0]
         
     ballPos = [random.randint(100, width-100),
                  random.randint(100, height-100)]
     #ballImage = ballImages[random.randint(0, len(ballImages)-1)]
-    balls += [Ball(["Ball/ball.png",
-                    "Ball/balla.png",
-                    "Ball/ballb.png",
-                    "Ball/ballc.png"],
+    balls += [Ball(["Ball/food.png"],
                    ballSpeed,
-                   5,
+                   1,
                    ballPos)]
     count += 1
 
@@ -80,21 +72,13 @@ while True:
     ballTimer += 1
     if ballTimer >= ballTimerMax:
         ballTimer = 0
-        ballSpeed = [random.randint(-5, 5),
-                     random.randint(-5, 5)]
-        if ballSpeed[0] == 0:
-            ballSpeed[0] = 1
-        if ballSpeed[1] == 0:
-            ballSpeed[1] = 1
+        ballSpeed = [0,0]
             
         ballPos = [random.randint(100, width-100),
                      random.randint(100, height-100)]
-        balls += [Ball(["Ball/ball.png",
-						"Ball/balla.png",
-						"Ball/ballb.png",
-						"Ball/ballc.png"],
+        balls += [Ball(["Ball/food.png"],
                        ballSpeed,
-					   5,
+					   1,
                        ballPos)]
         #print len(balls), clock.get_fps()
     
@@ -106,6 +90,8 @@ while True:
     for first in balls:
         if player.collideBall(first):
              first.die()
+             player.mass += first.mass
+             print player.mass
         else:
             for second in balls:
                 if first != second:
