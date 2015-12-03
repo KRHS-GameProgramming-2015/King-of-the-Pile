@@ -94,10 +94,8 @@ while True:
     
     for first in balls:
         if player.collideBall(first):
-             first.die()
-             player.mass += first.mass/10
-             print player.mass
-             player.image = pygame.transform.scale(player.image, (player.mass, player.mass))
+			first.die()
+			player.grow(first)
         else:
             for second in balls:
                 if first != second:
