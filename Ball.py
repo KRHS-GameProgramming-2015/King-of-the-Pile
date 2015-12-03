@@ -13,8 +13,8 @@ class Ball():
             self.images += [pygame.image.load(image)]
         self.image = self.images[0]
         self.rect = self.image.get_rect()
-        self.width,self.height = self.image.get_size()
-        self.image = pygame.transform.scale(self.image, (mass, mass))
+        self.originalImage = self.image
+        self.width,self.height = self.image.get_size() 
         self.radius = self.rect.width/2 - 2
         
         self.frame = 0
@@ -32,26 +32,19 @@ class Ball():
         self.mass = mass
         
 
+    def grow(self):
+		self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
+		self.rect = self.image.get_rect(center = self.rect.center)    
+    
+
     def die(self):
         
         self.living = False
 
     def update(self, size):
         self.move()
-        self.animate()
-        self.collideScreen(size)
-        
-    def animate(self):
-        if self.timer < self.timerMax:
-            self.timer += 1
-        else:
-            self.timer = 0
-            if self.frame < self.maxFrame:
-                self.frame += 1
-            else:
-                self.frame = 0
-            self.image = self.images[self.frame]
-    
+        self.grow()
+        self.collideScreen(size)      
     
     def move(self):
         self.speed = [self.speedx, self.speedy]

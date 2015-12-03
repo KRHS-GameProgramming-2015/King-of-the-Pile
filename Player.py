@@ -11,12 +11,12 @@ class PlayerBall(Ball):
         self.maxSpeedy = maxSpeed[1]
         self.realSpeedx = self.speedx
         self.realSpeedy = self.speedy
-        self.accx = .1 # Higher number means less acceleration effect ie follows mouse movments more closly any number greater than 1 causes more jitter 
-        self.accy = .1
+        self.accControlx = .1 # Higher number means less acceleration effect ie follows mouse movments more closly any number greater than 1 causes more jitter 
+        self.accControly = .1
         #self.viscosityX = 4
         #self.viscosityY = 4
-        self.accx = self.accx/(mass/50)
-        self.accy = self.accy/(mass/50)
+        self.accx = self.accControlx/(mass/50)
+        self.accy = self.accControly/(mass/50)
         self.mass = mass
   
     def collideScreen(self, size):
@@ -62,10 +62,12 @@ class PlayerBall(Ball):
         self.speedy += (mLocation[1] - self.rect.centery)/8 * self.accy
        
     def grow(self, other):
-		self.mass += other.mass/10
-		print self.mass
-		self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
-		self.rect = self.image.get_rect(center = self.rect.center)    
+        self.mass += other.mass/10
+        print self.mass
+        self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
+        self.rect = self.image.get_rect(center = self.rect.center)
+        self.accx = self.accControlx/(self.mass/50)
+        self.accy = self.accControly/(self.mass/50)
     
     def update(self, size):
         self.move()

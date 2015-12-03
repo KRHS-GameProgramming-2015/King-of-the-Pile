@@ -43,7 +43,7 @@ while count < 4:
     ballImage = ballImages[random.randint(0, len(ballImages)-1)]
     balls += [Ball([ballImage],
                    ballSpeed,
-                   10,
+                   20,
                    ballPos)]
     count += 1
 
@@ -83,7 +83,7 @@ while True:
         ballImage = ballImages[random.randint(0, len(ballImages)-1)]
         balls += [Ball([ballImage],
                ballSpeed,
-               10,
+               20,
                ballPos)]
         #print len(balls), clock.get_fps()
     
