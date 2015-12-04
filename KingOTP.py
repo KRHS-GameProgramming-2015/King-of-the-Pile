@@ -94,8 +94,8 @@ while True:
     
     for first in balls:
         if player.collideBall(first):
-			first.die()
-			player.grow(first)
+            first.die()
+            player.grow(first)
         else:
             for second in balls:
                 if first != second:
