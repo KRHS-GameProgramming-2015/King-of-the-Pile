@@ -1,20 +1,22 @@
-from Player import Player
 import sys, pygame, math
 from Ball import Ball
 
 class PlayerBall(Ball):
-    def __init__(self, images, maxSpeed, pos = [0,0], mass = 5):
-        Ball.__init__(self, images, [0,0], 5, pos)
+    def __init__(self, images, maxSpeed, pos = [0,0], mass = 50):
+        Ball.__init__(self, images, [0,0], mass, pos)
+        self.originalImage = self.image
+        self.image = pygame.transform.scale(self.originalImage, (mass, mass))
+        self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeedx = maxSpeed[0]
         self.maxSpeedy = maxSpeed[1]
         self.realSpeedx = self.speedx
         self.realSpeedy = self.speedy
-        self.accx = .1 # Higher number means less acceleration effect ie follows mouse movments more closly any number greater than 1 causes more jitter 
-        self.accy = .1
+        self.accControlx = .1 # Higher number means less acceleration effect ie follows mouse movments more closly any number greater than 1 causes more jitter 
+        self.accControly = .1
         #self.viscosityX = 4
         #self.viscosityY = 4
-        self.accx = self.accx/(mass/5)
-        self.accy = self.accy/(mass/5)
+        self.accx = self.accControlx/(mass/50)
+        self.accy = self.accControly/(mass/50)
         self.mass = mass
   
     def collideScreen(self, size):
@@ -58,23 +60,21 @@ class PlayerBall(Ball):
             
         self.speedx += (mLocation[0] - self.rect.centerx)/8 * self.accx
         self.speedy += (mLocation[1] - self.rect.centery)/8 * self.accy
-            
-    #def move(self):
-        #if self.rect.centerx > self.targetx:
-            #self.speedx = -self.maxSpeedx
-        #elif self.rect.centerx < self.targetx:
-            #self.speedx = self.maxSpeedx
-        #else:
-            #self.speedx = 0
-        
-        #if self.rect.centery > self.targety:
-            #self.speedy = -self.maxSpeedy
-        #elif self.rect.centery < self.targety:
-            #self.speedy = self.maxSpeedy
-        #else:
-            #self.speedy = 0
-        
-        #Ball.move(self)
+       
+    def grow(self, other):
+        self.mass += other.mass/20
+        print self.mass
+        self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
+        self.rect = self.image.get_rect(center = self.rect.center)
+        self.accx = self.accControlx/(self.mass/50)
+        self.accy = self.accControly/(self.mass/50)
+        if self.mass > 200:
+            self.accx = self.accControlx/(200/50)
+            self.accy = self.accControly/(200/50)
+    
+    def update(self, size):
+        self.move()
+        #self.collideScreen(size)
     
     def follow(self, mLocation):
         if self.rect.centerx > mLocation[0]:
@@ -92,6 +92,4 @@ class PlayerBall(Ball):
         #print self.rect.centerx, self.rect.centery
             
             
-            
-
             

@@ -22,7 +22,7 @@ screen = pygame.display.set_mode(size, pygame.FULLSCREEN )
 
 balls = []
 ballTimer = 0
-ballTimerMax = .1 * 60
+ballTimerMax = 1 * 60
 
 player = PlayerBall(["playerBall/ball.png"],[10,10],[width/2, height/2])
 
@@ -78,8 +78,8 @@ while True:
         ballTimer = 0
         ballSpeed = [0,0]
             
-        ballPos = [random.randint(100, width-100),
-                     random.randint(100, height-100)]
+        ballPos = [random.randint(0, width),
+                 random.randint(0, height)]
         ballImage = ballImages[random.randint(0, len(ballImages)-1)]
         balls += [Ball([ballImage],
                ballSpeed,
@@ -114,11 +114,6 @@ while True:
     screen.blit(player.image, player.rect)
     pygame.display.flip()
     
-    if len(balls) == 0:
-        count = 0
-        while count <100:
-            print "YOU WON!!!"
-            count += 1
-        sys.exit()
+
         
     clock.tick(60)
