@@ -33,8 +33,8 @@ class Ball():
         
 
     def grow(self):
-		self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
-		self.rect = self.image.get_rect(center = self.rect.center)    
+        self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
+        self.rect = self.image.get_rect(center = self.rect.center)    
     
 
     def die(self):
@@ -47,10 +47,12 @@ class Ball():
         self.collideScreen(size)      
     
     def move(self):
+        
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         self.didBounceX = False
         self.didBounceY = False
+        
 
     def collideScreen(self, size):
         width = size[0]
