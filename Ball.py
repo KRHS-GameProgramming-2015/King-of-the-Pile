@@ -15,7 +15,7 @@ class Ball():
         self.rect = self.image.get_rect()
         self.originalImage = self.image
         self.width,self.height = self.image.get_size() 
-        self.radius = self.rect.width/2 - 2
+        self.radius = self.rect.width/2
         
         self.frame = 0
         self.maxFrame = len(self.images)-1
