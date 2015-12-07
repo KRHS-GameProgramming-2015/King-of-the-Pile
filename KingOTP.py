@@ -42,8 +42,8 @@ while count < 4:
     ballTimer = 0
     ballSpeed = [0,0]
         
-    ballPos = [random.randint(0, width),
-                 random.randint(0, height)]
+    ballPos = [random.randint(50, width-50),
+                 random.randint(50, height-50)]
 
     ballImage = ballImages[random.randint(0, len(ballImages)-1)]
     balls += [Ball([ballImage],
@@ -72,8 +72,8 @@ while True:
         ballTimer = 0
         ballSpeed = [0,0]
             
-        ballPos = [random.randint(0, width),
-                 random.randint(0, height)]
+        ballPos = [random.randint(50, width-50),
+                 random.randint(50, height-50)]
         ballImage = ballImages[random.randint(0, len(ballImages)-1)]
         balls += [Ball([ballImage],
                ballSpeed,
