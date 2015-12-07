@@ -7,9 +7,12 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 1366 
-height = 768
+screenModes = pygame.display.list_modes()
+
+width = screenModes[0][0]
+height = screenModes[0][1]
 size = width, height
+print size
 
 r = 255
 g = 255
@@ -18,7 +21,7 @@ b = 255
 bgColor = BgColor()
 #bgColor = r,g,b = 0,0,0
 
-screen = pygame.display.set_mode(size, pygame.FULLSCREEN )
+screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
 
 balls = []
 ballTimer = 0
@@ -47,28 +50,17 @@ while count < 4:
                    ballPos)]
     count += 1
 
+fullscreen = False
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: 
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                player.go("up")
-            elif event.key == pygame.K_DOWN:
-                player.go("down")
-            elif event.key == pygame.K_LEFT:
-                player.go("left")
-            elif event.key == pygame.K_RIGHT:
-                player.go("right")
+            if event.key == pygame.K_q:
+				sys.exit()
         elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_UP:
-                player.go("stop up")
-            elif event.key == pygame.K_DOWN:
-                player.go("stop down")
-            elif event.key == pygame.K_LEFT:
-                player.go("stop left")
-            elif event.key == pygame.K_RIGHT:
-                player.go("stop right")
+            pass
     
     mLocation = pygame.mouse.get_pos()
     player.follow(mLocation)
