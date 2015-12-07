@@ -23,6 +23,8 @@ bgColor = BgColor()
 
 screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
 
+foodMax = 20
+
 balls = []
 ballTimer = 0
 ballTimerMax = 1 * 60
@@ -66,7 +68,7 @@ while True:
     player.follow(mLocation)
     
     ballTimer += 1
-    if ballTimer >= ballTimerMax:
+    if ballTimer >= ballTimerMax and len(balls) < foodMax:
         ballTimer = 0
         ballSpeed = [0,0]
             
