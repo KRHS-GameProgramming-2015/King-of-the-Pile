@@ -1,7 +1,7 @@
 import sys, pygame, math
 from Ball import Ball
 
-class PlayerBall(Ball):
+class PredatorBall(Ball):
     def __init__(self, images, maxSpeed, pos = [0,0], mass = 50):
         Ball.__init__(self, images, [0,0], mass, pos)
         self.originalImage = self.image
@@ -62,7 +62,7 @@ class PlayerBall(Ball):
         self.speedy += (mLocation[1] - self.rect.centery)/8 * self.accy
        
     def grow(self, other):
-        self.mass += other.mass/20
+        self.mass += other.mass/8
         print self.mass
         self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
         self.rect = self.image.get_rect(center = self.rect.center)
@@ -91,5 +91,11 @@ class PlayerBall(Ball):
             
         #print self.rect.centerx, self.rect.centery
             
+            
+            
+
+        
+  
+    
             
             
