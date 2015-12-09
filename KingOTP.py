@@ -31,8 +31,8 @@ ballTimerMax = 1 * 60
 predatorTimer = 0
 predatorTimerMax = .8 * 60
 
-player = PlayerBall(["playerBall/ball.png"],[10,10],[width/2, height/2])
-predator1 = PredatorBall(["playerBall/ball.png"],[10,10],[width/2, height/2])
+player = PlayerBall(["PlayerBall/ball.png"],[10,10],[width/2, height/2])
+predator1 = PredatorBall(["PlayerBall/ball.png"],[10,10],[width/2, height/2])
 
 ballImages = ["Ball/Food.png",
               "Ball/Food-fire.png",
