@@ -27,7 +27,7 @@ foodMax = 20
 
 balls = []
 ballTimer = 0
-ballTimerMax = 1 * 60
+ballTimerMax = .8 * 60
 predatorTimer = 0
 predatorTimerMax = .8 * 60
 
@@ -120,8 +120,9 @@ while True:
     
     for ball in balls:
         screen.blit(ball.image, ball.rect)
+	screen.blit(predator1.image, predator1.rect)
     screen.blit(player.image, player.rect)
-    screen.blit(predator1.image, predator1.rect)
+    
     pygame.display.flip()
     
 

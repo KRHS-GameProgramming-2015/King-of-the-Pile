@@ -62,7 +62,7 @@ class PredatorBall(Ball):
         self.speedy += (mLocation[1] - self.rect.centery)/8 * self.accy
        
     def grow(self, other):
-        self.mass += other.mass/8
+        self.mass += other.mass/10
         print self.mass
         self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
         self.rect = self.image.get_rect(center = self.rect.center)
