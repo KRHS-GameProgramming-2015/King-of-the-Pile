@@ -63,7 +63,7 @@ class PlayerBall(Ball):
        
     def grow(self, other):
         self.mass += other.mass/20
-        print self.mass
+        print self.mass,self
         self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
         self.rect = self.image.get_rect(center = self.rect.center)
         self.accx = self.accControlx/(self.mass/50)
@@ -90,6 +90,10 @@ class PlayerBall(Ball):
             self.go("up", mLocation)
             
         #print self.rect.centerx, self.rect.centery
+        
+    def die(self):
+		print "You Died!!!!"
+		sys.exit()
             
             
             

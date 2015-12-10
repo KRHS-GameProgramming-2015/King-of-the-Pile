@@ -40,7 +40,7 @@ ballImages = ["Ball/Food.png",
               "Ball/Food-ocean.png"]
 
 count = 0
-while count < 4:
+while count < 40:
 
     ballTimer = 0
     ballSpeed = [0,0]
@@ -72,8 +72,8 @@ while True:
     
     predatorTimer += 1
     if predatorTimer >= predatorTimerMax:
-		predatorTimer = 0
-		predator1.follow([random.randint(50, width-100),
+        predatorTimer = 0
+        predator1.follow([random.randint(50, width-100),
                  random.randint(50, height-100)])
     
     ballTimer += 1
@@ -113,14 +113,22 @@ while True:
     for ball in balls:
         if not ball.living:
             balls.remove(ball)
-                    
+            
+    if player.collideBall(predator1) and player.mass - 10 > predator1.mass:
+        predator1.die()
+        player.grow(predator1)
+        print "predator dies"
+    
+    if player.collideBall(predator1) and player.mass + 10 < predator1.mass:
+        player.die()
+        print "player dies"
     
     bgColor.fade()
     screen.fill(bgColor.color())
     
     for ball in balls:
         screen.blit(ball.image, ball.rect)
-	screen.blit(predator1.image, predator1.rect)
+    screen.blit(predator1.image, predator1.rect)
     screen.blit(player.image, player.rect)
     
     pygame.display.flip()
