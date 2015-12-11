@@ -42,6 +42,12 @@ class PlayerBall(Ball):
                 if self.radius + other.radius > self.distanceTo(other.rect.center):
                     return True
         return False
+        
+    def canEatOther(self, other):
+        if self.collideBall(other):
+            if self.mass -10 > other.mass:
+                return True 
+        return False
     
     def go(self, direction, mLocation):
         if direction == "up":
@@ -63,9 +69,10 @@ class PlayerBall(Ball):
        
     def grow(self, other):
         self.mass += other.mass/20
-        print self.mass,self
+        #print self.mass,self
         self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
         self.rect = self.image.get_rect(center = self.rect.center)
+        self.radius = self.rect.width/3
         self.accx = self.accControlx/(self.mass/50)
         self.accy = self.accControly/(self.mass/50)
         if self.mass > 200:
@@ -92,8 +99,8 @@ class PlayerBall(Ball):
         #print self.rect.centerx, self.rect.centery
         
     def die(self):
-		print "You Died!!!!"
-		sys.exit()
+        print "You Died!!!!"
+        sys.exit()
             
             
             

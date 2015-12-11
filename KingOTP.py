@@ -32,7 +32,10 @@ predatorTimer = 0
 predatorTimerMax = .8 * 60
 
 player = PlayerBall(["PlayerBall/ball.png"],[10,10],[width/2, height/2])
-predator1 = PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2])
+predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+		     PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+		     PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+			 PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2])]
 
 ballImages = ["Ball/Food.png",
               "Ball/Food-fire.png",
@@ -72,9 +75,10 @@ while True:
     
     predatorTimer += 1
     if predatorTimer >= predatorTimerMax:
-        predatorTimer = 0
-        predator1.follow([random.randint(50, width-100),
-                 random.randint(50, height-100)])
+			predatorTimer = 0
+			for predator in predators:
+				predator.follow([random.randint(50, width-100),
+								 random.randint(50, height-100)])
     
     ballTimer += 1
     if ballTimer >= ballTimerMax and len(balls) < foodMax:
@@ -91,7 +95,8 @@ while True:
         #print len(balls), clock.get_fps()
     
     player.update(size)
-    predator1.update(size)
+    for predator in predators:
+		predator.update(size)
     
     for ball in balls:
         ball.update(size)
@@ -101,34 +106,38 @@ while True:
             first.die()
             player.grow(first)
         
-        if predator1.collideBall(first):
-            first.die()
-            predator1.grow(first)
-            
-        else:
-            for second in balls:
-                if first != second:
-                    first.collideBall(second)
-                    
+        for predator in predators:
+			if predator.collideBall(first):
+				first.die()
+				predator.grow(first)
+    
+    for predator in predators:
+		if player.canEatOther(predator):
+			print "predator dies"
+			predator.die()
+			player.grow(predator)
+		elif predator.canEatOther(player):
+			print "player dies"
+			player.die()
+					   
     for ball in balls:
         if not ball.living:
             balls.remove(ball)
             
-    if player.collideBall(predator1) and player.mass - 10 > predator1.mass:
-        predator1.die()
-        player.grow(predator1)
-        print "predator dies"
+    for predator in predators:
+        if not predator.living:
+            predators.remove(predator)
+            
     
-    if player.collideBall(predator1) and player.mass + 10 < predator1.mass:
-        player.die()
-        print "player dies"
+
     
     bgColor.fade()
     screen.fill(bgColor.color())
     
     for ball in balls:
         screen.blit(ball.image, ball.rect)
-    screen.blit(predator1.image, predator1.rect)
+    for predator in predators:
+        screen.blit(predator.image, predator.rect)
     screen.blit(player.image, player.rect)
     
     pygame.display.flip()
