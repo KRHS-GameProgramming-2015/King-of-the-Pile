@@ -12,7 +12,7 @@ screenModes = pygame.display.list_modes()
 width = screenModes[0][0]
 height = screenModes[0][1]
 size = width, height
-print size
+
 
 r = 255
 g = 255
