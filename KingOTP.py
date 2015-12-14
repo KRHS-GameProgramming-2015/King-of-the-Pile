@@ -23,11 +23,11 @@ bgColor = BgColor()
 
 screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
 
-foodMax = 20
+
 
 balls = []
 ballTimer = 0
-ballTimerMax = .8 * 60
+ballTimerMax = .5 * 60
 predatorTimer = 0
 predatorTimerMax = .8 * 60
 
@@ -36,11 +36,13 @@ predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, heigh
 		     PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
 		     PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
 			 PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2])]
+			 
+foodMax = 10 * len(predators)
 
-ballImages = ["Ball/Food.png",
-              "Ball/Food-fire.png",
-              "Ball/Food-icy.png",
-              "Ball/Food-ocean.png"]
+ballImages = ["Ball/Food.png"]#,
+              #"Ball/Food-fire.png",
+              #"Ball/Food-icy.png",
+              #"Ball/Food-ocean.png"]
 
 count = 0
 while count < 40:
