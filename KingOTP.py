@@ -31,23 +31,23 @@ ballTimerMax = 2 * 60
 predatorTimer = 0
 predatorTimerMax = .8 * 60
 
-player = PlayerBall(["PlayerBall/ball.png"],[10,10],[width/2, height/2])
-predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2])]
+player = PlayerBall(["PlayerBall/ball.png"],[10,10],[width/2-1024, height/2-1024])
+predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512])]
              
 foodMax = 10 * len(predators)
 ballTimerMax = 1 * 60 / len(predators)
@@ -62,8 +62,8 @@ while count < foodMax:
     ballTimer = 0
     ballSpeed = [0,0]
         
-    ballPos = [random.randint(50, width-100),
-                 random.randint(50, height-100)]
+    ballPos = [random.randint(50-512, width-100-512),
+                 random.randint(50-512, height-100-512)]
 
     ballImage = ballImages[random.randint(0, len(ballImages)-1)]
     balls += [Ball([ballImage],
@@ -99,8 +99,8 @@ while True:
         ballTimer = 0
         ballSpeed = [0,0]
             
-        ballPos = [random.randint(50, width-100),
-                 random.randint(50, height-100)]
+        ballPos = [random.randint(50-512, width-100-512),
+                 random.randint(50-512, height-100-512)]
         ballImage = ballImages[random.randint(0, len(ballImages)-1)]
         balls += [Ball([ballImage],
                ballSpeed,
