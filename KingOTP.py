@@ -33,10 +33,10 @@ predatorTimerMax = .8 * 60
 
 player = PlayerBall(["PlayerBall/ball.png"],[10,10],[width/2, height/2])
 predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-		     PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-		     PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
-			 PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2])]
-			 
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2])]
+             
 foodMax = 10 * len(predators)
 
 ballImages = ["Ball/Food.png"]#,
@@ -77,10 +77,10 @@ while True:
     
     predatorTimer += 1
     if predatorTimer >= predatorTimerMax:
-			predatorTimer = 0
-			for predator in predators:
-				predator.follow([random.randint(50, width-100),
-								 random.randint(50, height-100)])
+            predatorTimer = 0
+            for predator in predators:
+                predator.follow([random.randint(50, width-100),
+                                 random.randint(50, height-100)])
     
     ballTimer += 1
     if ballTimer >= ballTimerMax and len(balls) < foodMax:
@@ -98,7 +98,7 @@ while True:
     
     player.update(size)
     for predator in predators:
-		predator.update(size)
+        predator.update(size)
     
     for ball in balls:
         ball.update(size)
@@ -109,19 +109,19 @@ while True:
             player.grow(first)
         
         for predator in predators:
-			if predator.collideBall(first):
-				first.die()
-				predator.grow(first)
+            if predator.collideBall(first):
+                first.die()
+                predator.grow(first)
     
     for predator in predators:
-		if player.canEatOther(predator):
-			print "predator dies"
-			predator.die()
-			player.grow(predator)
-		elif predator.canEatOther(player):
-			print "player dies"
-			player.die()
-					   
+        if player.canEatOther(predator):
+            print "predator dies"
+            predator.die()
+            player.grow(predator)
+        elif predator.canEatOther(player):
+            print "player dies"
+            player.die()
+                       
     for ball in balls:
         if not ball.living:
             balls.remove(ball)

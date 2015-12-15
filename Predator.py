@@ -28,7 +28,7 @@ class PredatorBall(PlayerBall):
             self.accx = self.accControlx/(200/50)
             self.accy = self.accControly/(200/50)
             
-	def search(self, other):
+    def search(self, other):
         if self.searchRect.right > other.searchRect.left and self.searchRect.left < other.searchRect.right:
             if self.searchRect.bottom > other.searchRect.top and self.searchRect.top < other.searchRect.bottom:
                 if self.searchRadius + other.searchRadius > self.distanceTo(other.rect.center):
