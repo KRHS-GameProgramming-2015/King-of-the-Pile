@@ -35,6 +35,18 @@ player = PlayerBall(["PlayerBall/ball.png"],[10,10],[width/2, height/2])
 predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
              PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
              PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2]),
              PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2, height/2])]
              
 foodMax = 10 * len(predators)
@@ -45,7 +57,7 @@ ballImages = ["Ball/Food.png"]#,
               #"Ball/Food-ocean.png"]
 
 count = 0
-while count < 40:
+while count < foodMax:
 
     ballTimer = 0
     ballSpeed = [0,0]
