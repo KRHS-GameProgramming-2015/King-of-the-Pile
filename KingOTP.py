@@ -51,7 +51,6 @@ predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, h
              
 foodMax = 10 * len(predators)
 ballTimerMax = 1 * 60 / len(predators)
-ballTimerMax = 1
 ballImages = ["Ball/Food.png"]#,
               #"Ball/Food-fire.png",
               #"Ball/Food-icy.png",
@@ -128,11 +127,11 @@ while True:
     
     for predator in predators:
         if player.canEatOther(predator):
-            print "predator dies"
+           #print "predator dies"
             predator.die()
             player.grow(predator)
         elif predator.canEatOther(player):
-            print "player dies"
+            #print "player dies"
             player.die()
             
 	#for predator in predators:

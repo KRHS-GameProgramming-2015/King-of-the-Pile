@@ -4,10 +4,7 @@ from Player import PlayerBall
 class PredatorBall(PlayerBall):
     def __init__(self, images, maxSpeed, pos = [0,0], mass = 50):
         PlayerBall.__init__(self, images, maxSpeed, pos, mass)
-        self.searchRect = self.image.get_rect()
-        self.searchRect.inflate_ip(self.rect.width, self.rect.height)
-        self.searchRadius = self.searchRect.width/2
-        print self.rect.size, self.searchRect.size
+        #print self.rect.size, self.searchRect.size
 
     def die(self):
         self.living = False
