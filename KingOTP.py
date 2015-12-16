@@ -32,22 +32,22 @@ predatorTimer = 0
 predatorTimerMax = .8 * 60
 
 player = PlayerBall(["PlayerBall/ball.png"],[10,10],[width/2-1024, height/2-1024])
-predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512])]
+predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512])]#,
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512])]
              
 foodMax = 10 * len(predators)
 ballTimerMax = 1 * 60 / len(predators)
@@ -87,30 +87,31 @@ while True:
     mLocation = pygame.mouse.get_pos()
     player.follow(mLocation)
     
-    predatorTimer += 1
-    if predatorTimer >= predatorTimerMax:
-            predatorTimer = 0
-            for predator in predators:
-                predator.follow([random.randint(50, width-100),
-                                 random.randint(50, height-100)])
-    
+    #predatorTimer += 1
+    #if predatorTimer >= predatorTimerMax:
+            #predatorTimer = 0
+            #for predator in predators:
+                #predator.follow([random.randint(50, width-100),
+                                 #random.randint(50, height-100)])
     ballTimer += 1
     if ballTimer >= ballTimerMax and len(balls) < foodMax:
         ballTimer = 0
         ballSpeed = [0,0]
             
-        ballPos = [random.randint(50-512, width-100-512),
-                 random.randint(50-512, height-100-512)]
+        ballPos = [width/2-512, height/2-512]#[random.randint(50-512, width-100-512),
+                 #random.randint(50-512, height-100-512)]
+                 
         ballImage = ballImages[random.randint(0, len(ballImages)-1)]
         balls += [Ball([ballImage],
                ballSpeed,
                20,
                ballPos)]
-        #print len(balls), clock.get_fps()
     
     player.update(size)
     for predator in predators:
         predator.update(size)
+        if predator.search(player):
+			predator.follow([player.rect.centerx, player.rect.centery])
     
     for ball in balls:
         ball.update(size)
@@ -127,11 +128,11 @@ while True:
     
     for predator in predators:
         if player.canEatOther(predator):
-           #print "predator dies"
+
             predator.die()
             player.grow(predator)
         elif predator.canEatOther(player):
-            #print "player dies"
+
             player.die()
             
 	#for predator in predators:

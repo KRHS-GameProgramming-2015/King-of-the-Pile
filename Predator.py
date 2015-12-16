@@ -29,5 +29,6 @@ class PredatorBall(PlayerBall):
         if self.searchRect.right > other.searchRect.left and self.searchRect.left < other.searchRect.right:
             if self.searchRect.bottom > other.searchRect.top and self.searchRect.top < other.searchRect.bottom:
                 if self.searchRadius + other.searchRadius > self.distanceTo(other.rect.center):
-                    return True
+					if self.mass -10 > other.mass:
+						return True
         return False
