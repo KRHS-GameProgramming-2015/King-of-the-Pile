@@ -51,6 +51,7 @@ predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, h
              
 foodMax = 10 * len(predators)
 ballTimerMax = 1 * 60 / len(predators)
+ballTimerMax = 1
 ballImages = ["Ball/Food.png"]#,
               #"Ball/Food-fire.png",
               #"Ball/Food-icy.png",

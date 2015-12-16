@@ -34,7 +34,8 @@ class Ball():
 
     def grow(self):
         self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
-        self.rect = self.image.get_rect(center = self.rect.center)    
+        self.rect = self.image.get_rect(center = self.rect.center)
+        self.radius = self.rect.width/2   
     
 
     def die(self):
