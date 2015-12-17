@@ -3,6 +3,8 @@ from BgColor import *
 from Ball import *
 from Player import *
 from Predator import *
+from Food import *
+from PoisonFood import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -51,25 +53,16 @@ predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, h
              
 foodMax = 10 * len(predators)
 ballTimerMax = 1 * 60 / len(predators)
-ballImages = ["Ball/Food.png"]#,
-              #"Ball/Food-fire.png",
-              #"Ball/Food-icy.png",
-              #"Ball/Food-ocean.png"]
 
 count = 0
 while count < foodMax:
 
     ballTimer = 0
-    ballSpeed = [0,0]
         
     ballPos = [random.randint(50-512, width-100-512),
                  random.randint(50-512, height-100-512)]
 
-    ballImage = ballImages[random.randint(0, len(ballImages)-1)]
-    balls += [Ball([ballImage],
-                   ballSpeed,
-                   20,
-                   ballPos)]
+    balls += [Food(ballPos)]
     count += 1
 
 fullscreen = False
@@ -96,16 +89,14 @@ while True:
     ballTimer += 1
     if ballTimer >= ballTimerMax and len(balls) < foodMax:
         ballTimer = 0
-        ballSpeed = [0,0]
-            
-        ballPos = [width/2-512, height/2-512]#[random.randint(50-512, width-100-512),
-                 #random.randint(50-512, height-100-512)]
-                 
-        ballImage = ballImages[random.randint(0, len(ballImages)-1)]
-        balls += [Ball([ballImage],
-               ballSpeed,
-               20,
-               ballPos)]
+        
+        ballPos = [random.randint(50-512, width-100-512),
+                 random.randint(50-512, height-100-512)]
+        
+        if random.randint(1,5)==1:
+            balls += [PoisonFood(ballPos)]
+        else:
+            balls += [Food(ballPos)]
     
     player.update(size)
     for predator in predators:

@@ -37,7 +37,7 @@ class Ball():
         
 
     def grow(self):
-        self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
+        self.image = pygame.transform.scale(self.originalImage, (abs(self.mass), abs(self.mass))) 
         self.rect = self.image.get_rect(center = self.rect.center)
         self.radius = self.rect.width/2
         self.searchRect.inflate_ip((self.rect.width)- self.searchRect.width, (self.rect.height)- self.searchRect.height)

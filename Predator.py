@@ -13,7 +13,7 @@ class PredatorBall(PlayerBall):
     def grow(self, other):
         self.mass += other.mass/8
         #print self.mass,self
-        self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
+        self.image = pygame.transform.scale(self.originalImage, (abs(self.mass), abs(self.mass))) 
         self.rect = self.image.get_rect(center = self.rect.center)
         self.searchRect.inflate_ip((self.rect.width * 2)- self.searchRect.width, (self.rect.height * 2)- self.searchRect.height)
         #print self.rect.size, self.searchRect.size

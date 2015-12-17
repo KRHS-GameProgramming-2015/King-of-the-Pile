@@ -68,9 +68,11 @@ class PlayerBall(Ball):
         self.speedy += (mLocation[1] - self.rect.centery)/8 * self.accy
        
     def grow(self, other):
+        if other.mass <0:
+            print "before: ",self.mass
         self.mass += other.mass/20
         #print self.mass,self
-        self.image = pygame.transform.scale(self.originalImage, (self.mass, self.mass)) 
+        self.image = pygame.transform.scale(self.originalImage, (abs(self.mass), abs(self.mass))) 
         self.rect = self.image.get_rect(center = self.rect.center)
         self.searchRect.inflate_ip((self.rect.width)- self.searchRect.width, (self.rect.height)- self.searchRect.height)
         self.radius = self.rect.width/3
@@ -80,6 +82,8 @@ class PlayerBall(Ball):
         if self.mass > 200:
             self.accx = self.accControlx/(200/50)
             self.accy = self.accControly/(200/50)
+        if other.mass <0:
+            print "after: ",self.mass
     
     def update(self, size):
         self.move()
