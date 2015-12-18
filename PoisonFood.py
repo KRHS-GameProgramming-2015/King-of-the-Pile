@@ -6,3 +6,4 @@ class PoisonFood(Ball):
         image = "Ball/poison-Food.png"
         mass = -50
         Ball.__init__(self, [image], [0, 0], mass, pos)
+        

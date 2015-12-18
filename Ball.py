@@ -14,7 +14,7 @@ class Ball():
         self.image = self.images[0]
         self.rect = self.image.get_rect()
         self.originalImage = self.image
-        self.width,self.height = self.image.get_size() 
+        self.width, self.height = self.image.get_size() 
         self.radius = self.rect.width/2
         
         self.frame = 0
@@ -35,6 +35,8 @@ class Ball():
         self.searchRect.inflate_ip(self.rect.width, self.rect.height)
         self.searchRadius = self.searchRect.width/2
         
+        self.age = 0
+        
 
     def grow(self):
         self.image = pygame.transform.scale(self.originalImage, (abs(self.mass), abs(self.mass))) 
@@ -50,7 +52,8 @@ class Ball():
     def update(self, size):
         self.move()
         self.grow()
-        self.collideScreen(size)      
+        self.collideScreen(size)
+        self.age += 1    
     
     def move(self):
         

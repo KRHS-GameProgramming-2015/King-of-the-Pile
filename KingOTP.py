@@ -34,10 +34,10 @@ predatorTimer = 0
 predatorTimerMax = .8 * 60
 
 player = PlayerBall(["PlayerBall/ball.png"],[10,10],[width/2-1024, height/2-1024])
-predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512])]#,
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),#]
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512])]#,
              #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
              #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
              #PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),
@@ -102,7 +102,7 @@ while True:
     for predator in predators:
         predator.update(size)
         if predator.search(player):
-			predator.follow([player.rect.centerx, player.rect.centery])
+            predator.follow([player.rect.centerx, player.rect.centery])
     
     for ball in balls:
         ball.update(size)
@@ -126,17 +126,19 @@ while True:
 
             player.die()
             
-	#for predator in predators:
-		#for second in predators:
-			#if not second == predator:
-				#if predator.canEatOther(second):
-					#second.die()
-					#predator.grow(second)
-				#if second.canEatOther(predator):
-					#predator.die()
-					#second.grow(predator)
+    #for predator in predators:
+        #for second in predators:
+            #if not second == predator:
+                #if predator.canEatOther(second):
+                    #second.die()
+                    #predator.grow(second)
+                #if second.canEatOther(predator):
+                    #predator.die()
+                    #second.grow(predator)
                        
     for ball in balls:
+        if ball.age > 15 * 60:
+            ball.living = False
         if not ball.living:
             balls.remove(ball)
             
