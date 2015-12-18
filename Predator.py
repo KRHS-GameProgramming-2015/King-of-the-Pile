@@ -32,4 +32,9 @@ class PredatorBall(PlayerBall):
                 if self.searchRadius + other.searchRadius > self.distanceTo(other.rect.center):
                     if self.mass > other.mass:
                         return True
+        if self.searchRect.left > other.searchRect.right and self.searchRect.right < other.searchRect.left:
+            if self.searchRect.top > other.searchRect.bottom and self.searchRect.bottom < other.searchRect.top:
+                if self.searchRadius + other.searchRadius > self.distanceTo(other.rect.center):
+                    if self.mass > other.mass:
+                        return True
         return False
