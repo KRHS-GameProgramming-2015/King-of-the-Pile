@@ -90,8 +90,8 @@ while True:
     if ballTimer >= ballTimerMax and len(balls) < foodMax:
         ballTimer = 0
         
-        ballPos = [random.randint(50-512, width-100-512),
-                 random.randint(50-512, height-100-512)]
+        ballPos = [width/2-512, height/2-512]#random.randint(50-512, width-100-512),
+                 #random.randint(50-512, height-100-512)]
         
         if random.randint(1,5)==1:
             balls += [PoisonFood(ballPos)]
