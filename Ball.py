@@ -31,8 +31,7 @@ class Ball():
         
         self.mass = mass
         
-        self.searchRect = self.image.get_rect()
-        self.searchRect.inflate_ip(self.rect.width, self.rect.height)
+        self.searchRect = self.rect.inflate(10,10)
         self.searchRadius = self.searchRect.width/2
         
         self.age = 0
@@ -42,7 +41,7 @@ class Ball():
         self.image = pygame.transform.scale(self.originalImage, (abs(self.mass), abs(self.mass))) 
         self.rect = self.image.get_rect(center = self.rect.center)
         self.radius = self.rect.width/2
-        self.searchRect.inflate_ip((self.rect.width)- self.searchRect.width, (self.rect.height)- self.searchRect.height)
+        self.searchRect = self.rect.inflate(10,10)
         self.searchRadius = self.searchRect.width/2
 
     def die(self):

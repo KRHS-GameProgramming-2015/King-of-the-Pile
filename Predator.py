@@ -15,7 +15,8 @@ class PredatorBall(PlayerBall):
         #print self.mass,self
         self.image = pygame.transform.scale(self.originalImage, (abs(self.mass), abs(self.mass))) 
         self.rect = self.image.get_rect(center = self.rect.center)
-        self.searchRect.inflate_ip((self.rect.width * 2)- self.searchRect.width, (self.rect.height * 2)- self.searchRect.height)
+        self.searchRect = self.rect.inflate(300,300)
+        self.searchRadius = self.searchRect.width/2
         #print self.rect.size, self.searchRect.size
         self.radius = self.rect.width/3
         self.searchRadius = self.searchRect.width/2
@@ -26,15 +27,10 @@ class PredatorBall(PlayerBall):
             self.accy = self.accControly/(200/50)
             
     def search(self, other):
-        print self.searchRadius, self.searchRect.size, self.mass
-        if self.searchRect.right > other.searchRect.left and self.searchRect.left < other.searchRect.right:
-            if self.searchRect.bottom > other.searchRect.top and self.searchRect.top < other.searchRect.bottom:
-                if self.searchRadius + other.searchRadius > self.distanceTo(other.rect.center):
-                    if self.mass > other.mass:
-                        return True
-        if self.searchRect.left > other.searchRect.right and self.searchRect.right < other.searchRect.left:
-            if self.searchRect.top > other.searchRect.bottom and self.searchRect.bottom < other.searchRect.top:
-                if self.searchRadius + other.searchRadius > self.distanceTo(other.rect.center):
-                    if self.mass > other.mass:
-                        return True
+        #print self.searchRadius, self.searchRect.size, self.mass
+        if self.searchRect.right > other.rect.left and self.searchRect.left < other.rect.right:
+            if self.searchRect.bottom > other.rect.top and self.searchRect.top < other.rect.bottom:
+                if self.searchRadius + other.radius > self.distanceTo(other.rect.center):
+                    return True
+        
         return False

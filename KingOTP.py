@@ -23,7 +23,7 @@ b = 255
 bgColor = BgColor()
 #bgColor = r,g,b = 0,0,0
 
-screen = pygame.display.set_mode(size)#, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
 
 
 
@@ -31,7 +31,7 @@ balls = []
 ballTimer = 0
 ballTimerMax = 2 * 60
 predatorTimer = 0
-predatorTimerMax = .8 * 60
+predatorTimerMax = 3 * 60
 
 player = PlayerBall(["PlayerBall/ball.png"],[10,10],[width/2-1024, height/2-1024])
 predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[width/2-512, height/2-512]),#]
@@ -80,12 +80,7 @@ while True:
     mLocation = pygame.mouse.get_pos()
     player.follow(mLocation)
     
-    #predatorTimer += 1
-    #if predatorTimer >= predatorTimerMax:
-            #predatorTimer = 0
-            #for predator in predators:
-                #predator.follow([random.randint(50, width-100),
-                                 #random.randint(50, height-100)])
+
     ballTimer += 1
     if ballTimer >= ballTimerMax and len(balls) < foodMax:
         ballTimer = 0
@@ -103,6 +98,14 @@ while True:
         predator.update(size)
         if predator.search(player):
             predator.follow([player.rect.centerx, player.rect.centery])
+        else:
+            predatorTimer += 1
+            if predatorTimer >= predatorTimerMax:
+                predatorTimer = 0
+                for predator in predators:
+                    print "pred location",(predator.rect.centerx, predator.rect.centery)
+                    predator.follow([random.randint(100, width-100),
+                                     random.randint(100, height-100)])
     
     for ball in balls:
         ball.update(size)
@@ -123,8 +126,8 @@ while True:
             predator.die()
             player.grow(predator)
         elif predator.canEatOther(player):
-
-            player.die()
+            pass
+            #player.die()
             
     #for predator in predators:
         #for second in predators:
