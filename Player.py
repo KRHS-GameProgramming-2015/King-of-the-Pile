@@ -68,8 +68,8 @@ class PlayerBall(Ball):
         self.speedy += (mLocation[1] - self.rect.centery)/8 * self.accy
        
     def grow(self, other):
-        if other.mass <0:
-            print "before: ",self.mass
+        #if other.mass <0:
+            #print "before: ",self.mass
         self.mass += other.mass/20
         #print self.mass,self
         self.image = pygame.transform.scale(self.originalImage, (abs(self.mass), abs(self.mass))) 
@@ -82,14 +82,22 @@ class PlayerBall(Ball):
         if self.mass > 200:
             self.accx = self.accControlx/(200/50)
             self.accy = self.accControly/(200/50)
-        if other.mass <0:
-            print "after: ",self.mass
+        #if other.mass <0:
+            #print "after: ",self.mass
     
     def update(self, size):
         self.move()
         #self.collideScreen(size)
     
     def follow(self, mLocation):
+        
+        mx = mLocation[0]
+        my = mLocation[1]
+        mx = abs(mx)
+        my = abs(my)
+        
+        
+        
         if self.rect.centerx > mLocation[0]:
             self.go("left", mLocation)
             

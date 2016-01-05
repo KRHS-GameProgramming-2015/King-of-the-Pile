@@ -26,6 +26,29 @@ class PredatorBall(PlayerBall):
             self.accx = self.accControlx/(200/50)
             self.accy = self.accControly/(200/50)
             
+    def follow(self, mLocation):
+        
+        mx = mLocation[0]
+        my = mLocation[1]
+        mx = abs(mx)
+        my = abs(my)
+        m = [mx,my]
+        
+        
+        print "[",mx,",",my,"]"
+        
+        if self.rect.centerx > mx:
+            self.go("left", m)
+            
+        if self.rect.centerx < mx:
+            self.go("right", m)
+            
+        if self.rect.centery < my:
+            self.go("down", m)
+            
+        if self.rect.centery > my:
+            self.go("up", m)
+            
     def search(self, other):
         #print self.searchRadius, self.searchRect.size, self.mass
         if self.searchRect.right > other.rect.left and self.searchRect.left < other.rect.right:
