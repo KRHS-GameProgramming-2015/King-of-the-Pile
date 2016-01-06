@@ -23,9 +23,7 @@ b = 255
 bgColor = BgColor()
 #bgColor = r,g,b = 0,0,0
 
-screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
-
-
+screen = pygame.display.set_mode(screenSize)#, pygame.FULLSCREEN)
 
 balls = []
 ballTimer = 0
@@ -34,10 +32,10 @@ predatorTimer = 0
 predatorTimerMax = 1 * 60
 
 player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
-predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512])]#,
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512])]#,
+predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),#]
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512])]#,
              #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
              #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
              #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
@@ -103,7 +101,7 @@ while True:
             if predatorTimer >= predatorTimerMax:
                 predatorTimer = 0
                 for predator in predators:
-                    print "pred location", predator,(predator.rect.centerx, predator.rect.centery)
+                    #print "pred location", predator,(predator.rect.centerx, predator.rect.centery)
                     predator.follow([random.randint(50-512, screenWidth-100-512),
                                      random.randint(50-512, screenHeight-100-512)])
     

@@ -35,7 +35,7 @@ class PredatorBall(PlayerBall):
         m = [mx,my]
         
         
-        print "[",mx,",",my,"]"
+        #print "[",mx,",",my,"]"
         
         if self.rect.centerx > mx:
             self.go("left", m)
@@ -54,6 +54,8 @@ class PredatorBall(PlayerBall):
         if self.searchRect.right > other.rect.left and self.searchRect.left < other.rect.right:
             if self.searchRect.bottom > other.rect.top and self.searchRect.top < other.rect.bottom:
                 if self.searchRadius + other.radius > self.distanceTo(other.rect.center):
-                    return True
+					if self.mass - 10 > other.mass:
+						print "following"
+						return True
         
         return False
