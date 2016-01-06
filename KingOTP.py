@@ -23,7 +23,7 @@ b = 255
 bgColor = BgColor()
 #bgColor = r,g,b = 0,0,0
 
-screen = pygame.display.set_mode(screenSize)#, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
 
 balls = []
 ballTimer = 0
@@ -124,8 +124,8 @@ while True:
             predator.die()
             player.grow(predator)
         elif predator.canEatOther(player):
-            pass
-            #player.die()
+            
+            player.die()
             
     #for predator in predators:
         #for second in predators:
