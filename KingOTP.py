@@ -23,19 +23,19 @@ b = 255
 bgColor = BgColor()
 #bgColor = r,g,b = 0,0,0
 
-screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(screenSize)#, pygame.FULLSCREEN)
 
 balls = []
 ballTimer = 0
 ballTimerMax = 2 * 60
-predatorTimer = 0
-predatorTimerMax = 1 * 60
+#predatorTimer = 0
+#predatorTimerMax = 1 * 60
 
 player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
-predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),#]
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512])]#,
+predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512])]#,
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512])]#,
              #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
              #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
              #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
@@ -94,22 +94,23 @@ while True:
     player.update(screenSize)
     for predator in predators:
         predator.update(screenSize)
+        predator.predatorTimer += 1
         if predator.search(player):
             predator.follow([player.rect.centerx, player.rect.centery])
             predator.amFollowing = True
         else:
-            for ball in balls:
-                if predator.search(ball) and predator.amFollowing == False:
-                    predator.follow([ball.rect.centerx, ball.rect.centery])
-                    predator.amFollowing = True
-                else:
-                    predatorTimer += 1
-                    if predatorTimer >= predatorTimerMax:
-                        predatorTimer = 0
-                        for predator in predators:
-                            #print "pred location", predator,(predator.rect.centerx, predator.rect.centery)
-                            predator.follow([random.randint(50-512, screenWidth-100-512),
-                                            random.randint(50-512, screenHeight-100-512)])
+            if predator.predatorTimer >= predator.predatorTimerMax:
+                for ball in balls:
+                    if predator.search(ball) and predator.amFollowing == False:
+                        predator.follow([ball.rect.centerx, ball.rect.centery])
+                        predator.amFollowing = True
+                        print predator, "following", ball
+                        predator.predatorTimer = 0
+                    elif predator.predatorTimer >= predator.predatorTimerMax * 3:
+                        predator.predatorTimer = 0
+                        print "pred location", predator,(predator.rect.centerx, predator.rect.centery)
+                        predator.follow([100,100])#[random.randint(50-512, screenWidth-100-512),
+                                        #random.randint(50-512, screenHeight-100-512)])
     
     for ball in balls:
         ball.update(screenSize)

@@ -4,7 +4,8 @@ from Player import PlayerBall
 class PredatorBall(PlayerBall):
     def __init__(self, images, maxSpeed, pos = [0,0], mass = 50):
         PlayerBall.__init__(self, images, maxSpeed, pos, mass)
-        
+        self.predatorTimer = 0
+        self.predatorTimerMax = 1 * 60
         #print self.rect.size, self.searchRect.size
 
     def die(self):
@@ -55,8 +56,8 @@ class PredatorBall(PlayerBall):
         if self.searchRect.right > other.rect.left and self.searchRect.left < other.rect.right:
             if self.searchRect.bottom > other.rect.top and self.searchRect.top < other.rect.bottom:
                 if self.searchRadius + other.radius > self.distanceTo(other.rect.center):
-					if self.mass - 10 > other.mass:
-						#print "following"
-						return True
+                    if self.mass - 10 > other.mass:
+                        #print "following"
+                        return True
         
         return False

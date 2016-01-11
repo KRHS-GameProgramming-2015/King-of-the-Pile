@@ -79,7 +79,7 @@ class PlayerBall(Ball):
         self.radius = self.rect.width/3
         self.searchRadius = self.searchRect.width/2
         
-        print self.accControlx, self.mass
+        #print self.accControlx, self.mass
         
         self.accx = self.accControlx/(self.mass/50.0)
         self.accy = self.accControly/(self.mass/50.0)
