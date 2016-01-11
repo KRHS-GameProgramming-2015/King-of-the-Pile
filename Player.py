@@ -18,6 +18,7 @@ class PlayerBall(Ball):
         self.accx = self.accControlx/(mass/50)
         self.accy = self.accControly/(mass/50)
         self.mass = mass
+        self.amFollowing = False
   
     def collideScreen(self, size):
         width = size[0]
@@ -91,6 +92,7 @@ class PlayerBall(Ball):
     def update(self, size):
         self.move()
         #self.collideScreen(size)
+        self.amFollowing = False
     
     def follow(self, mLocation):
         

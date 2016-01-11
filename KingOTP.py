@@ -96,14 +96,20 @@ while True:
         predator.update(screenSize)
         if predator.search(player):
             predator.follow([player.rect.centerx, player.rect.centery])
+            predator.amFollowing = True
         else:
-            predatorTimer += 1
-            if predatorTimer >= predatorTimerMax:
-                predatorTimer = 0
-                for predator in predators:
-                    #print "pred location", predator,(predator.rect.centerx, predator.rect.centery)
-                    predator.follow([random.randint(50-512, screenWidth-100-512),
-                                     random.randint(50-512, screenHeight-100-512)])
+            for ball in balls:
+                if predator.search(ball) and predator.amFollowing == False:
+                    predator.follow([ball.rect.centerx, ball.rect.centery])
+                    predator.amFollowing = True
+                else:
+                    predatorTimer += 1
+                    if predatorTimer >= predatorTimerMax:
+                        predatorTimer = 0
+                        for predator in predators:
+                            #print "pred location", predator,(predator.rect.centerx, predator.rect.centery)
+                            predator.follow([random.randint(50-512, screenWidth-100-512),
+                                            random.randint(50-512, screenHeight-100-512)])
     
     for ball in balls:
         ball.update(screenSize)
