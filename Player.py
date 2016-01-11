@@ -77,8 +77,11 @@ class PlayerBall(Ball):
         self.searchRect.inflate_ip((self.rect.width)- self.searchRect.width, (self.rect.height)- self.searchRect.height)
         self.radius = self.rect.width/3
         self.searchRadius = self.searchRect.width/2
-        self.accx = self.accControlx/(self.mass/50)
-        self.accy = self.accControly/(self.mass/50)
+        
+        print self.accControlx, self.mass
+        
+        self.accx = self.accControlx/(self.mass/50.0)
+        self.accy = self.accControly/(self.mass/50.0)
         if self.mass > 200:
             self.accx = self.accControlx/(200/50)
             self.accy = self.accControly/(200/50)
