@@ -23,7 +23,7 @@ b = 255
 bgColor = BgColor()
 #bgColor = r,g,b = 0,0,0
 
-screen = pygame.display.set_mode(screenSize)#, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
 
 balls = []
 ballTimer = 0
@@ -32,22 +32,21 @@ ballTimerMax = 2 * 60
 #predatorTimerMax = 1 * 60
 
 player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
-predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512])]#,
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512])]#,
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512]),
-             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[screenWidth/2-512, screenHeight/2-512])]
+predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),#]
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+             #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
              
 foodMax = 10 * len(predators)
 ballTimerMax = 1 * 60 / len(predators)
@@ -78,6 +77,7 @@ while True:
     mLocation = pygame.mouse.get_pos()
     player.follow(mLocation)
     
+    
 
     ballTimer += 1
     if ballTimer >= ballTimerMax and len(balls) < foodMax:
@@ -95,22 +95,23 @@ while True:
     for predator in predators:
         predator.update(screenSize)
         predator.predatorTimer += 1
+        predator.follow(predator.followLocation)
         if predator.search(player):
-            predator.follow([player.rect.centerx, player.rect.centery])
+            predator.followLocation=[player.rect.centerx, player.rect.centery]
             predator.amFollowing = True
         else:
             if predator.predatorTimer >= predator.predatorTimerMax:
                 for ball in balls:
                     if predator.search(ball) and predator.amFollowing == False:
-                        predator.follow([ball.rect.centerx, ball.rect.centery])
+                        predator.followLocation=[ball.rect.centerx, ball.rect.centery]
                         predator.amFollowing = True
                         print predator, "following", ball
                         predator.predatorTimer = 0
-                    elif predator.predatorTimer >= predator.predatorTimerMax * 3:
+                    elif predator.predatorTimer >= predator.predatorTimerMax * 6:
                         predator.predatorTimer = 0
                         print "pred location", predator,(predator.rect.centerx, predator.rect.centery)
-                        predator.follow([100,100])#[random.randint(50-512, screenWidth-100-512),
-                                        #random.randint(50-512, screenHeight-100-512)])
+                        predator.followLocation=([random.randint(50-512, screenWidth-100-512),
+                                                random.randint(50-512, screenHeight-100-512)])
     
     for ball in balls:
         ball.update(screenSize)

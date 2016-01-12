@@ -71,7 +71,7 @@ class PlayerBall(Ball):
     def grow(self, other):
         #if other.mass <0:
             #print "before: ",self.mass
-        self.mass += other.mass/20
+        self.mass += other.mass/8
         #print self.mass,self
         self.image = pygame.transform.scale(self.originalImage, (abs(self.mass), abs(self.mass))) 
         self.rect = self.image.get_rect(center = self.rect.center)
