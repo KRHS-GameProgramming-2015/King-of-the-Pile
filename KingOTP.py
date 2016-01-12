@@ -64,6 +64,8 @@ while count < foodMax:
 
 fullscreen = False
 
+level = 1
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: 
@@ -77,7 +79,14 @@ while True:
     mLocation = pygame.mouse.get_pos()
     player.follow(mLocation)
     
-    
+    if len(predators) <= 0:
+        iteration = 0
+        while iteration < level:
+            predators += [PredatorBall(["PredatorBall/predator1.png"],
+                                      [10,10],
+                                      [random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
+            iteration += 1
+        level += 1
 
     ballTimer += 1
     if ballTimer >= ballTimerMax and len(balls) < foodMax:
@@ -168,6 +177,7 @@ while True:
     screen.blit(player.image, player.rect)
     
     pygame.display.flip()
+    
     
 
         
