@@ -3,6 +3,8 @@ from Player import PlayerBall
 
 class PredatorBall(PlayerBall):
     def __init__(self, images, maxSpeed, pos = [0,0], mass = 50):
+        if mass <= 50:
+            mass = 52
         PlayerBall.__init__(self, images, maxSpeed, pos, mass)
         self.predatorTimer = 0
         self.predatorTimerMax = 1 * 60
