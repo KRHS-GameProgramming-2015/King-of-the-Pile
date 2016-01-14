@@ -1,4 +1,4 @@
-import sys, pygame, math
+import sys, pygame, math, random
 from Player import PlayerBall
 
 class PredatorBall(PlayerBall):
@@ -7,8 +7,8 @@ class PredatorBall(PlayerBall):
         self.predatorTimer = 0
         self.predatorTimerMax = 1 * 60
         #print self.rect.size, self.searchRect.size
-        self.followLocation = [0,0]
-
+        self.followLocation = pos
+        print self.followLocation
     def die(self):
         self.living = False
         print "pred dies"

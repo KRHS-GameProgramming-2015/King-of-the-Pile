@@ -95,7 +95,7 @@ while True:
         ballPos = [random.randint(50-512, screenWidth-100-512),
                  random.randint(50-512, screenHeight-100-512)]#screenWidth/2-512, screenHeight/2-512
         
-        if random.randint(1,5)==1:
+        if random.randint(1,6)==1:
             balls += [PoisonFood(ballPos)]
         else:
             balls += [Food(ballPos)]
@@ -144,15 +144,15 @@ while True:
             
             player.die()
             
-    #for predator in predators:
-        #for second in predators:
-            #if not second == predator:
-                #if predator.canEatOther(second):
-                    #second.die()
-                    #predator.grow(second)
-                #if second.canEatOther(predator):
-                    #predator.die()
-                    #second.grow(predator)
+    for predator in predators:
+        for second in predators:
+            if not second == predator:
+                if predator.canEatOther(second):
+                    second.die()
+                    predator.grow(second)
+                if second.canEatOther(predator):
+                    predator.die()
+                    second.grow(predator)
                        
     for ball in balls:
         if ball.age > 15 * 60:
