@@ -11,8 +11,8 @@ clock = pygame.time.Clock()
 
 screenModes = pygame.display.list_modes()
 
-screenWidth = screenModes[0][0]
-screenHeight = screenModes[0][1]
+screenWidth = 900#screenModes[0][0]
+screenHeight = 700#screenModes[0][1]
 screenSize = screenWidth, screenHeight
 
 
@@ -23,7 +23,7 @@ b = 255
 bgColor = BgColor()
 #bgColor = r,g,b = 0,0,0
 
-screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(screenSize)#, pygame.FULLSCREEN)
 
 balls = []
 ballTimer = 0
@@ -66,7 +66,10 @@ fullscreen = False
 
 level = 1
 
+sizeCap = 5000
+
 while True:
+    print player.mass
     for event in pygame.event.get():
         if event.type == pygame.QUIT: 
             sys.exit()
@@ -157,15 +160,41 @@ while True:
                     second.grow(predator)
                        
     for ball in balls:
+        if ball.mass >= sizeCap:
+            ball.mass = sizeCap-1 
         if ball.age > 15 * 60:
             ball.living = False
         if not ball.living:
             balls.remove(ball)
             
     for predator in predators:
+        if predator.mass >= sizeCap:
+            predator.mass = sizeCap-1 
         if not predator.living:
             predators.remove(predator)
             
+    if player.mass >= sizeCap:
+        print "........................................................."
+        print ":                                                      :"
+        print ":                                                      :"
+        print ":                    YOU WON!!!                        :"
+        print ":                                                      :"
+        print ":                                                      :"
+        print "........................................................"
+        sys.exit()
+            
+    if player.mass >= sizeCap:
+        player.mass = sizeCap-1
+        
+    if player.mass >= sizeCap:
+        print "........................................................."
+        print ":                                                      :"
+        print ":                                                      :"
+        print ":                    YOU WON!!!                        :"
+        print ":                                                      :"
+        print ":                                                      :"
+        print "........................................................"
+        sys.exit()
     
 
     
