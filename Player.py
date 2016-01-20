@@ -118,6 +118,10 @@ class PlayerBall(Ball):
         #print self.rect.centerx, self.rect.centery
         
     def die(self):
+        i=0
+        while i<100:
+            print " "
+            i+=1
         print "You Died!!!!"
         sys.exit()
             
