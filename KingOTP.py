@@ -6,15 +6,13 @@ from Predator import *
 from Food import *
 from PoisonFood import *
 pygame.init()
-
 clock = pygame.time.Clock()
 
 screenModes = pygame.display.list_modes()
-
 screenWidth = screenModes[0][0]
 screenHeight = screenModes[0][1]
 screenSize = screenWidth, screenHeight
-
+screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
 
 r = 255
 g = 255
@@ -23,7 +21,7 @@ b = 255
 bgColor = BgColor()
 #bgColor = r,g,b = 0,0,0
 
-screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
+
 
 balls = []
 ballTimer = 0
