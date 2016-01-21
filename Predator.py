@@ -10,10 +10,10 @@ class PredatorBall(PlayerBall):
         self.predatorTimerMax = 1 * 60
         #print self.rect.size, self.searchRect.size
         self.followLocation = pos
-        print self.followLocation
+        #print self.followLocation
     def die(self):
         self.living = False
-        print "pred dies"
+        #print "pred dies"
         
     def grow(self, other):
         self.mass += abs(other.mass)/8
@@ -40,7 +40,7 @@ class PredatorBall(PlayerBall):
         m = [mx,my]
         
         
-        print "[",mx,",",my,"]"
+        #print "[",mx,",",my,"]"
         
         if self.rect.centerx > mx:
             self.go("left", m)

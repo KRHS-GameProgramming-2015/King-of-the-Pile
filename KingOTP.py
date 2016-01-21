@@ -5,6 +5,8 @@ from Player import *
 from Predator import *
 from Food import *
 from PoisonFood import *
+from GameMenu import *
+from Button import *
 pygame.init()
 clock = pygame.time.Clock()
 
@@ -13,6 +15,10 @@ screenWidth = screenModes[0][0]
 screenHeight = screenModes[0][1]
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
+
+menu = Menu(["menu/menuscreen.png"])
+playButton = Button(["menu/Start.png"],[screenWidth/2-1024, screenHeight/2-1024])
+quitButton = Button(["menu/Quit.png"],[screenWidth/2-1024+250, screenHeight/2-1024])
 
 r = 255
 g = 255
@@ -66,7 +72,9 @@ level = 1
 
 sizeCap = 5000
 
-while True:
+
+
+while False:#True:
     foodMax = 8 * len(predators)
     for event in pygame.event.get():
         if event.type == pygame.QUIT: 
@@ -83,7 +91,7 @@ while True:
     if len(predators) <= 0:
         iteration = 0
         while iteration < level:
-            print player.mass
+            #print player.mass
             predators += [PredatorBall(["PredatorBall/predator1.png"],
                                       [10,10],
                                       [random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)],
@@ -117,11 +125,11 @@ while True:
                     if predator.search(ball) and predator.amFollowing == False:
                         predator.followLocation=[ball.rect.centerx, ball.rect.centery]
                         predator.amFollowing = True
-                        print predator, "following", ball
+                        #print predator, "following", ball
                         predator.predatorTimer = 0
                     elif predator.predatorTimer >= predator.predatorTimerMax * 6:
                         predator.predatorTimer = 0
-                        print "pred location", predator,(predator.rect.centerx, predator.rect.centery)
+                        #print "pred location", predator,(predator.rect.centerx, predator.rect.centery)
                         predator.followLocation=([random.randint(50-512, screenWidth-100-512),
                                                 random.randint(50-512, screenHeight-100-512)])
     
@@ -209,6 +217,9 @@ while True:
     for predator in predators:
         screen.blit(predator.image, predator.rect)
     screen.blit(player.image, player.rect)
+    screen.blit(playButton.image, playButton.rect)
+    screen.blit(quitButton.image, quitButton.rect)
+    screen.blit(menu.image, menu.rect)
     
     pygame.display.flip()
     
