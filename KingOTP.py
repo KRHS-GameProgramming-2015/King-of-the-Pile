@@ -16,9 +16,9 @@ screenHeight = screenModes[0][1]
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
 
-#menu = Menu(["menu/MenuScreen.png"])
-#playButton = Button(["menu/Start.png"],[screenWidth/2-1024, screenHeight/2-1024])
-#quitButton = Button(["menu/Quit.png"],[screenWidth/2-1024+250, screenHeight/2-1024])
+#menu = Menu(["Menu/MenuScreen.png"])
+#playButton = Button(["Menu/Start.png"],[screenWidth/2-1024, screenHeight/2-1024])
+#quitButton = Button(["Menu/Quit.png"],[screenWidth/2-1024+250, screenHeight/2-1024])
 
 r = 255
 g = 255
