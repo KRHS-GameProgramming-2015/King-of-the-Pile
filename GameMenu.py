@@ -1,5 +1,5 @@
 import sys, pygame, math, random
-
+from Button import *
 
 
 
@@ -13,6 +13,7 @@ class Menu():
         self.rect = self.image.get_rect()
         self.originalImage = self.image
         self.width, self.height = self.image.get_size() 
+        self.playing = False
 
 
     def update():
@@ -24,6 +25,12 @@ class Menu():
                     sys.exit()
             elif event.type == pygame.KEYUP:
                 pass
+                
+    def play(self, mLocation):
+        pass
+        
+    def quitGame(self, mLocation):
+        pass
         
 
         
