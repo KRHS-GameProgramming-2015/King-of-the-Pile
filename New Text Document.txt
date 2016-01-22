@@ -1,0 +1,7 @@
+Predators follow food and players making it more difficult
+they can now eat eachother but don't track eachother and will respawn after they have all been eaten.
+Starting to add menu screens
+
+
+/0
+images
