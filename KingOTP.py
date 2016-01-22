@@ -16,9 +16,9 @@ screenHeight = screenModes[0][1]
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
 
-menu = Menu(["menu/menuscreen.png"])
-playButton = Button(["menu/Start.png"],[screenWidth/2-1024, screenHeight/2-1024])
-quitButton = Button(["menu/Quit.png"],[screenWidth/2-1024+250, screenHeight/2-1024])
+#menu = Menu(["menu/menuscreen.png"])
+#playButton = Button(["menu/Start.png"],[screenWidth/2-1024, screenHeight/2-1024])
+#quitButton = Button(["menu/Quit.png"],[screenWidth/2-1024+250, screenHeight/2-1024])
 
 r = 255
 g = 255
@@ -217,9 +217,9 @@ while True:
     for predator in predators:
         screen.blit(predator.image, predator.rect)
     screen.blit(player.image, player.rect)
-    screen.blit(playButton.image, playButton.rect)
-    screen.blit(quitButton.image, quitButton.rect)
-    screen.blit(menu.image, menu.rect)
+   # screen.blit(playButton.image, playButton.rect)
+    #screen.blit(quitButton.image, quitButton.rect)
+    #screen.blit(menu.image, menu.rect)
     
     pygame.display.flip()
     
