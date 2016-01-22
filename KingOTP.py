@@ -74,7 +74,7 @@ sizeCap = 5000
 
 
 
-while False:#True:
+while True:
     foodMax = 8 * len(predators)
     for event in pygame.event.get():
         if event.type == pygame.QUIT: 
