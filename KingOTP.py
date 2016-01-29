@@ -184,7 +184,7 @@ while True:
             elif predator.canEatOther(player):
                 
                 player.die()
-                mode = "menu"
+                mode = "lost"
                 
         for predator in predators:
             for second in predators:
@@ -218,7 +218,7 @@ while True:
             print ":                                                      :"
             print ":                                                      :"
             print "........................................................"
-            mode = "menu"
+            mode = "won"
                 
         if player.mass >= sizeCap:
             player.mass = sizeCap-1
@@ -236,7 +236,7 @@ while True:
             print ":                                                      :"
             print ":                                                      :"
             print "........................................................"
-            mode = "menu"
+            mode = "won"
         
 
         
@@ -259,3 +259,51 @@ while True:
 
         
         clock.tick(60)
+        
+    while mode == "lost"
+    for event in pygame.event.get():
+            if event.type == pygame.QUIT: 
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    sys.exit()
+            if event.type == pygame.MOUSEBUTTONUP:
+                pt = pygame.mouse.get_pos()
+        
+                if quitButton.click(pt):
+                    print "Good Bye"
+                    sys.exit()
+                if playButton.click(pt) and menu.playing == False:
+                    menu.playing = True
+                    mode = "game"
+        
+        screen.blit(menu.image, menu.rect)
+        screen.blit(playButton.image, playButton.rect)
+        screen.blit(quitButton.image, quitButton.rect)
+    
+        pygame.display.flip()
+        clock.tick(60)   
+    
+    while mode == "won"
+    for event in pygame.event.get():
+            if event.type == pygame.QUIT: 
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    sys.exit()
+            if event.type == pygame.MOUSEBUTTONUP:
+                pt = pygame.mouse.get_pos()
+        
+                if quitButton.click(pt):
+                    print "Good Bye"
+                    sys.exit()
+                if playButton.click(pt) and menu.playing == False:
+                    menu.playing = True
+                    mode = "game"
+        
+        screen.blit(menu.image, menu.rect)
+        screen.blit(playButton.image, playButton.rect)
+        screen.blit(quitButton.image, quitButton.rect)
+    
+        pygame.display.flip()
+        clock.tick(60)   
