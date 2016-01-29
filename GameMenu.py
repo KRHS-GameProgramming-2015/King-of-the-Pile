@@ -26,20 +26,10 @@ class Menu():
             elif event.type == pygame.KEYUP:
                 pass
                 
-    def play(self, mLocation, playButton):
-        
-        if mLocation[0] < playButton.rect.right and mLocation[0] > playButton.rect.left:
-            if mLocation[1] < playButton.rect.bottom and mLocation[1] > playButton.rect.top:
-                return True
-                print "true"
-        return False
-        
-    def quitGame(self, mLocation, quitButton):
-        pass
-        
+   
 
         
-        mLocation = pygame.mouse.get_pos()
+        
         
         
         
