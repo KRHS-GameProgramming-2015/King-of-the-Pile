@@ -46,6 +46,8 @@ mode = "menu"
 while True:
     print mode
     menu = Menu(["Menu/MenuScreen.png"])
+    winMenu = Menu(["Menu/MenuScreen.png"])
+    loseMenu = Menu(["Menu/MenuScreen.png"])
     playButton = Button(["Menu/Start.png"],[500,920])
     quitButton = Button(["Menu/Quit.png"],[1070,920])
     while mode == "menu":    
@@ -260,8 +262,8 @@ while True:
         
         clock.tick(60)
         
-    while mode == "lost"
-    for event in pygame.event.get():
+    while mode == "lost":
+        for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
             if event.type == pygame.KEYDOWN:
@@ -284,8 +286,8 @@ while True:
         pygame.display.flip()
         clock.tick(60)   
     
-    while mode == "won"
-    for event in pygame.event.get():
+    while mode == "won":
+        for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 sys.exit()
             if event.type == pygame.KEYDOWN:
