@@ -279,7 +279,7 @@ while True:
                     menu.playing = True
                     mode = "game"
         
-        screen.blit(menu.image, menu.rect)
+        screen.blit(loseMenu.image, loseMenu.rect)
         screen.blit(playButton.image, playButton.rect)
         screen.blit(quitButton.image, quitButton.rect)
     
@@ -303,7 +303,7 @@ while True:
                     menu.playing = True
                     mode = "game"
         
-        screen.blit(menu.image, menu.rect)
+        screen.blit(winMenu.image, winMenu.rect)
         screen.blit(playButton.image, playButton.rect)
         screen.blit(quitButton.image, quitButton.rect)
     
