@@ -46,8 +46,8 @@ mode = "menu"
 while True:
     print mode
     menu = Menu(["Menu/MenuScreen.png"])
-    winMenu = Menu(["Menu/MenuScreen.png"])
-    loseMenu = Menu(["Menu/MenuScreen.png"])
+    winMenu = Menu(["Menu/winScreen.png"])
+    loseMenu = Menu(["Menu/loseScreen.png"])
     playButton = Button(["Menu/Start.png"],[500,920])
     quitButton = Button(["Menu/Quit.png"],[1070,920])
     while mode == "menu":    
@@ -212,7 +212,7 @@ while True:
             if not predator.living:
                 predators.remove(predator)
                 
-        if player.mass >= sizeCap:
+        if level >= 25:
             print "........................................................."
             print ":                                                      :"
             print ":                                                      :"
