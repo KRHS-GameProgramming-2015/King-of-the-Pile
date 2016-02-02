@@ -40,20 +40,23 @@ level = 1
 
 sizeCap = 5000
 
-mode = "menu"
+menu = Menu(["Menu/MenuScreen.png"])
+wonMenu = Menu(["Menu/winScreen.png"])
+loseMenu = Menu(["Menu/loseScreen.png"])
+playButton = Button(["Menu/Start.png"],[500,920])
+quitButton = Button(["Menu/Quit.png"],[1070,920])
+winPlayButton = Button(["Menu/winPlayAgain.png"],[800,920])
+winQuitButton = Button(["Menu/winQuit.png"],[1600,1000])
+losePlayButton = Button(["Menu/losePlayAgain.png"],[850,675])
+loseQuitButton = Button(["Menu/LoseQuit.png"],[840,1000])
+
+mode = "won"
 
 
 while True:
     print mode
-    menu = Menu(["Menu/MenuScreen.png"])
-    wonMenu = Menu(["Menu/winScreen.png"])
-    loseMenu = Menu(["Menu/loseScreen.png"])
-    playButton = Button(["Menu/Start.png"],[500,920])
-    quitButton = Button(["Menu/Quit.png"],[1070,920])
-    winPlayButton = Button(["Menu/winPlayAgain.png"],[800,920])
-    winQuitButton = Button(["Menu/winQuit.png"],[1600,1000])
-    losePlayButton = Button(["Menu/losePlayAgain.png"],[850,675])
-    loseQuitButton = Button(["Menu/LoseQuit.png"],[840,1000])
+    
+
 
     while mode == "menu":    
         for event in pygame.event.get():
@@ -71,7 +74,39 @@ while True:
                 if playButton.click(pt) and menu.playing == False:
                     menu.playing = True
                     mode = "game"
-        
+                    player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
+                    predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),#]
+                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
+                                 
+                    foodMax = 8 * len(predators)
+                    ballTimerMax = 1 * 60 / len(predators)
+
+                    count = 0
+                    while count < foodMax:
+
+                        ballTimer = 0
+                            
+                        ballPos = [random.randint(50-512, screenWidth-100-512),
+                                     random.randint(50-512, screenHeight-100-512)]
+
+                        balls += [Food(ballPos)]
+                        count += 1
+
+                    foodMax = 8 * len(predators)
+                        
         screen.blit(menu.image, menu.rect)
         screen.blit(playButton.image, playButton.rect)
         screen.blit(quitButton.image, quitButton.rect)
@@ -79,38 +114,7 @@ while True:
         pygame.display.flip()
         clock.tick(60)   
             
-    player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
-    predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),#]
-                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
-                 
-    foodMax = 8 * len(predators)
-    ballTimerMax = 1 * 60 / len(predators)
-
-    count = 0
-    while count < foodMax:
-
-        ballTimer = 0
-            
-        ballPos = [random.randint(50-512, screenWidth-100-512),
-                     random.randint(50-512, screenHeight-100-512)]
-
-        balls += [Food(ballPos)]
-        count += 1
-
-    foodMax = 8 * len(predators)
+    
     
     while mode == "game":
         for event in pygame.event.get():
@@ -281,8 +285,41 @@ while True:
                     print "Good Bye"
                     sys.exit()
                 if winPlayButton.click(pt) and menu.playing == False:
+                    print "Win button play clicked"
                     menu.playing = True
                     mode = "game"
+                    player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
+                    predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),#]
+                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
+                                 
+                    foodMax = 8 * len(predators)
+                    ballTimerMax = 1 * 60 / len(predators)
+
+                    count = 0
+                    while count < foodMax:
+
+                        ballTimer = 0
+                            
+                        ballPos = [random.randint(50-512, screenWidth-100-512),
+                                     random.randint(50-512, screenHeight-100-512)]
+
+                        balls += [Food(ballPos)]
+                        count += 1
+
+                    foodMax = 8 * len(predators)
         
         screen.blit(wonMenu.image, wonMenu.rect)
         screen.blit(winPlayButton.image, winPlayButton.rect)
@@ -305,8 +342,41 @@ while True:
                     print "Good Bye"
                     sys.exit()
                 if losePlayButton.click(pt) and menu.playing == False:
+                    print " lose button play clicked"
                     menu.playing = True
                     mode = "game"
+                    player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
+                    predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),#]
+                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
+                                 
+                    foodMax = 8 * len(predators)
+                    ballTimerMax = 1 * 60 / len(predators)
+
+                    count = 0
+                    while count < foodMax:
+
+                        ballTimer = 0
+                            
+                        ballPos = [random.randint(50-512, screenWidth-100-512),
+                                     random.randint(50-512, screenHeight-100-512)]
+
+                        balls += [Food(ballPos)]
+                        count += 1
+
+                    foodMax = 8 * len(predators)
         
         screen.blit(loseMenu.image, loseMenu.rect)
         screen.blit(losePlayButton.image, losePlayButton.rect)
