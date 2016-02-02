@@ -46,10 +46,15 @@ mode = "menu"
 while True:
     print mode
     menu = Menu(["Menu/MenuScreen.png"])
-    winMenu = Menu(["Menu/winScreen.png"])
+    wonMenu = Menu(["Menu/winScreen.png"])
     loseMenu = Menu(["Menu/loseScreen.png"])
     playButton = Button(["Menu/Start.png"],[500,920])
     quitButton = Button(["Menu/Quit.png"],[1070,920])
+    winPlayButton = Button(["Menu/winPlayAgain.png"],[800,920])
+    winQuitButton = Button(["Menu/winQuit.png"],[1600,1000])
+    losePlayButton = Button(["Menu/losePlayAgain.png"],[850,675])
+    loseQuitButton = Button(["Menu/LoseQuit.png"],[840,1000])
+
     while mode == "menu":    
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -262,30 +267,6 @@ while True:
         
         clock.tick(60)
         
-    while mode == "lost":
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: 
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    sys.exit()
-            if event.type == pygame.MOUSEBUTTONUP:
-                pt = pygame.mouse.get_pos()
-        
-                if quitButton.click(pt):
-                    print "Good Bye"
-                    sys.exit()
-                if playButton.click(pt) and menu.playing == False:
-                    menu.playing = True
-                    mode = "game"
-        
-        screen.blit(loseMenu.image, loseMenu.rect)
-        screen.blit(playButton.image, playButton.rect)
-        screen.blit(quitButton.image, quitButton.rect)
-    
-        pygame.display.flip()
-        clock.tick(60)   
-    
     while mode == "won":
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -296,16 +277,40 @@ while True:
             if event.type == pygame.MOUSEBUTTONUP:
                 pt = pygame.mouse.get_pos()
         
-                if quitButton.click(pt):
+                if winQuitButton.click(pt):
                     print "Good Bye"
                     sys.exit()
-                if playButton.click(pt) and menu.playing == False:
+                if winPlayButton.click(pt) and menu.playing == False:
                     menu.playing = True
                     mode = "game"
         
-        screen.blit(winMenu.image, winMenu.rect)
-        screen.blit(playButton.image, playButton.rect)
-        screen.blit(quitButton.image, quitButton.rect)
+        screen.blit(wonMenu.image, wonMenu.rect)
+        screen.blit(winPlayButton.image, winPlayButton.rect)
+        screen.blit(winQuitButton.image, winQuitButton.rect)
+    
+        pygame.display.flip()
+        clock.tick(60)   
+    
+    while mode == "lost":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: 
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    sys.exit()
+            if event.type == pygame.MOUSEBUTTONUP:
+                pt = pygame.mouse.get_pos()
+        
+                if loseQuitButton.click(pt):
+                    print "Good Bye"
+                    sys.exit()
+                if losePlayButton.click(pt) and menu.playing == False:
+                    menu.playing = True
+                    mode = "game"
+        
+        screen.blit(loseMenu.image, loseMenu.rect)
+        screen.blit(losePlayButton.image, losePlayButton.rect)
+        screen.blit(loseQuitButton.image, loseQuitButton.rect)
     
         pygame.display.flip()
         clock.tick(60)   
