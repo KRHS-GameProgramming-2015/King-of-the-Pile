@@ -50,7 +50,7 @@ winQuitButton = Button(["Menu/winQuit.png"],[1600,1000])
 losePlayButton = Button(["Menu/losePlayAgain.png"],[850,675])
 loseQuitButton = Button(["Menu/LoseQuit.png"],[840,1000])
 
-mode = "won"
+mode = "menu"
 
 
 while True:
