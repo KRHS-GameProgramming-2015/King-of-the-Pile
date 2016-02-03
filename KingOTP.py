@@ -28,7 +28,7 @@ bgColor = BgColor()
 
 balls = []
 ballTimer = 0
-ballTimerMax = 2 * 60
+ballTimerMax = 1.25 * 60
 #predatorTimer = 0
 #predatorTimerMax = 1 * 60
 
@@ -36,7 +36,7 @@ ballTimerMax = 2 * 60
 
 fullscreen = False
 
-
+predatorRespawn= False
 
 sizeCap = 5000
 
@@ -75,10 +75,10 @@ while True:
                     menu.playing = True
                     mode = "game"
                     player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
-                    predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),#]
-                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
+                    predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
@@ -91,7 +91,7 @@ while True:
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
                                  
-                    foodMax = 8 * len(predators)
+                    foodMax = 12 * len(predators)
                     ballTimerMax = 1 * 60 / len(predators)
 
                     count = 0
@@ -105,7 +105,7 @@ while True:
                         balls += [Food(ballPos)]
                         count += 1
 
-                    foodMax = 8 * len(predators)
+                    foodMax = 12 * len(predators)
                     level = 1
                         
         screen.blit(menu.image, menu.rect)
@@ -130,18 +130,32 @@ while True:
         mLocation = pygame.mouse.get_pos()
         player.follow(mLocation)
         
-        if len(predators) <= 0:
-            iteration = 0
-            while iteration < level:
-                #print player.mass
-                predators += [PredatorBall(["PredatorBall/predator1.png"],
-                                          [10,10],
-                                          [random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)],
-                                          random.randint(player.mass/3 , math.floor(player.mass/1.2)))]
-                iteration += 1
-            level += 1
-
         ballTimer += 1
+        
+        foodMax = 12 * len(predators)
+        
+        if len(predators) <= 0:
+            predatorRespawn = True
+            print predatorRespawn
+            iteration = 0
+            
+        if predatorRespawn == True and ballTimer >= ballTimerMax:
+            
+            
+            #print player.mass
+            predators += [PredatorBall(["PredatorBall/predator1.png"],
+                                      [10,10],
+                                      [random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)],
+                                      random.randint(player.mass/3 , math.floor(player.mass/1.2)))]
+            iteration += 1
+            
+            print iteration, predatorRespawn
+            
+            if iteration >= level:
+                level += 1
+                predatorRespawn = False
+
+        
         if ballTimer >= ballTimerMax and len(balls) < foodMax:
             ballTimer = 0
             
@@ -222,7 +236,7 @@ while True:
             if not predator.living:
                 predators.remove(predator)
                 
-        if level >= 10:
+        if level >= 8:
             print "........................................................."
             print ":                                                      :"
             print ":                                                      :"
@@ -290,10 +304,10 @@ while True:
                     menu.playing = True
                     mode = "game"
                     player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
-                    predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),#]
-                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
+                    predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
@@ -306,7 +320,7 @@ while True:
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
                                  
-                    foodMax = 8 * len(predators)
+                    foodMax = 12 * len(predators)
                     ballTimerMax = 1 * 60 / len(predators)
 
                     count = 0
@@ -320,7 +334,7 @@ while True:
                         balls += [Food(ballPos)]
                         count += 1
 
-                    foodMax = 8 * len(predators)
+                    foodMax = 12 * len(predators)
                     level = 1
         
         screen.blit(wonMenu.image, wonMenu.rect)
@@ -348,10 +362,10 @@ while True:
                     menu.playing = True
                     mode = "game"
                     player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
-                    predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),#]
-                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
-                                 PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
+                    predators = [PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
+                                 #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]#,
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
@@ -364,7 +378,7 @@ while True:
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)]),
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
                                  
-                    foodMax = 8 * len(predators)
+                    foodMax = 12 * len(predators)
                     ballTimerMax = 1 * 60 / len(predators)
 
                     count = 0
@@ -378,7 +392,7 @@ while True:
                         balls += [Food(ballPos)]
                         count += 1
 
-                    foodMax = 8 * len(predators)
+                    foodMax = 12 * len(predators)
                     level = 1
         
         screen.blit(loseMenu.image, loseMenu.rect)
