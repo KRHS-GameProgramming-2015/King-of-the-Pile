@@ -36,7 +36,7 @@ ballTimerMax = 2 * 60
 
 fullscreen = False
 
-level = 1
+
 
 sizeCap = 5000
 
@@ -71,7 +71,7 @@ while True:
                 if quitButton.click(pt):
                     print "Good Bye"
                     sys.exit()
-                if playButton.click(pt) and menu.playing == False:
+                if playButton.click(pt):
                     menu.playing = True
                     mode = "game"
                     player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
@@ -106,6 +106,7 @@ while True:
                         count += 1
 
                     foodMax = 8 * len(predators)
+                    level = 1
                         
         screen.blit(menu.image, menu.rect)
         screen.blit(playButton.image, playButton.rect)
@@ -221,7 +222,7 @@ while True:
             if not predator.living:
                 predators.remove(predator)
                 
-        if level >= 25:
+        if level >= 10:
             print "........................................................."
             print ":                                                      :"
             print ":                                                      :"
@@ -284,7 +285,7 @@ while True:
                 if winQuitButton.click(pt):
                     print "Good Bye"
                     sys.exit()
-                if winPlayButton.click(pt) and menu.playing == False:
+                if winPlayButton.click(pt):
                     print "Win button play clicked"
                     menu.playing = True
                     mode = "game"
@@ -320,6 +321,7 @@ while True:
                         count += 1
 
                     foodMax = 8 * len(predators)
+                    level = 1
         
         screen.blit(wonMenu.image, wonMenu.rect)
         screen.blit(winPlayButton.image, winPlayButton.rect)
@@ -337,11 +339,11 @@ while True:
                     sys.exit()
             if event.type == pygame.MOUSEBUTTONUP:
                 pt = pygame.mouse.get_pos()
-        
+                print menu.playing
                 if loseQuitButton.click(pt):
                     print "Good Bye"
                     sys.exit()
-                if losePlayButton.click(pt) and menu.playing == False:
+                if losePlayButton.click(pt):
                     print " lose button play clicked"
                     menu.playing = True
                     mode = "game"
@@ -377,6 +379,7 @@ while True:
                         count += 1
 
                     foodMax = 8 * len(predators)
+                    level = 1
         
         screen.blit(loseMenu.image, loseMenu.rect)
         screen.blit(losePlayButton.image, losePlayButton.rect)

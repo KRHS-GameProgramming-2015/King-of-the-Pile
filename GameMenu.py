@@ -13,7 +13,7 @@ class Menu():
         self.rect = self.image.get_rect()
         self.originalImage = self.image
         self.width, self.height = self.image.get_size() 
-        self.playing = False
+
 
 
     def update():
