@@ -2,7 +2,7 @@ import sys, pygame, math
 from Ball import Ball
 
 class PlayerBall(Ball):
-    def __init__(self, images, maxSpeed, pos = [0,0], mass = 50):
+    def __init__(self, images, maxSpeed, pos = [0,0], mass = 100):#50):
         Ball.__init__(self, images, [0,0], mass, pos)
         self.originalImage = self.image
         self.image = pygame.transform.scale(self.originalImage, (mass, mass))

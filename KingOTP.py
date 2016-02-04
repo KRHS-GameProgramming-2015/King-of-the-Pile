@@ -38,7 +38,7 @@ fullscreen = False
 
 predatorRespawn= False
 
-superlevel = 0
+#superlevel = 0
 
 sizeCap = 5000
 
@@ -248,8 +248,7 @@ while True:
             print "........................................................"
             mode = "won"
                 
-        if player.mass >= sizeCap:
-            player.mass = sizeCap-1
+        
             
         if player.mass >= sizeCap:
             
@@ -278,7 +277,8 @@ while True:
         screen.blit(player.image, player.rect)
     
     
-    
+        #if mode == "won":
+            #superlevel += 1
 
     
         pygame.display.flip()
@@ -289,7 +289,7 @@ while True:
         clock.tick(60)
         
     while mode == "won":
-        
+    
             
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
@@ -308,7 +308,7 @@ while True:
                     menu.playing = True
                     mode = "game"
                     player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
-                    level = superLevel
+                    #level = superlevel
                     foodMax = 12 * len(predators)
                     ballTimerMax = 1 * 60 / len(predators)
 
