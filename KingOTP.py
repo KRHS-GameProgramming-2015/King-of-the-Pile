@@ -14,7 +14,7 @@ screenModes = pygame.display.list_modes()
 screenWidth = screenModes[0][0]
 screenHeight = screenModes[0][1]
 screenSize = screenWidth, screenHeight
-screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(screenSiz, pygame.FULLSCREEN)
 
 
 r = 255
@@ -28,7 +28,7 @@ bgColor = BgColor()
 
 balls = []
 ballTimer = 0
-ballTimerMax = 1.25 * 60
+ballTimerMax = 0 * 60
 #predatorTimer = 0
 #predatorTimerMax = 1 * 60
 
@@ -94,7 +94,7 @@ while True:
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
                                  
                     foodMax = 12 * len(predators)
-                    ballTimerMax = 1 * 60 / len(predators)
+                    
 
                     count = 0
                     while count < foodMax:
@@ -135,10 +135,11 @@ while True:
         ballTimer += 1
         
         foodMax = 12 * len(predators)
+        print foodMax, ballTimerMax
         
         if len(predators) <= 0:
             predatorRespawn = True
-            print predatorRespawn
+            #print predatorRespawn
             iteration = 0
             
         if predatorRespawn == True and ballTimer >= ballTimerMax:
@@ -151,7 +152,7 @@ while True:
                                       random.randint(player.mass/3 , math.floor(player.mass/1.2)))]
             iteration += 1
             
-            print iteration, predatorRespawn
+            #print iteration, predatorRespawn
             
             if iteration >= level:
                 level += 1
@@ -310,7 +311,7 @@ while True:
                     player = PlayerBall(["PlayerBall/ball.png"],[10,10],[screenWidth/2-1024, screenHeight/2-1024])
                     #level = superlevel
                     foodMax = 12 * len(predators)
-                    ballTimerMax = 1 * 60 / len(predators)
+                    
 
                     count = 0
                     while count < foodMax:
@@ -342,7 +343,7 @@ while True:
                     sys.exit()
             if event.type == pygame.MOUSEBUTTONUP:
                 pt = pygame.mouse.get_pos()
-                print menu.playing
+                #print menu.playing
                 if loseQuitButton.click(pt):
                     print "Good Bye"
                     sys.exit()
@@ -368,7 +369,7 @@ while True:
                                  #PredatorBall(["PredatorBall/predator1.png"],[10,10],[random.randint(50-512, screenWidth-100-512),random.randint(50-512, screenHeight-100-512)])]
                                  
                     foodMax = 12 * len(predators)
-                    ballTimerMax = 1 * 60 / len(predators)
+                    
 
                     count = 0
                     while count < foodMax:
