@@ -14,7 +14,7 @@ screenModes = pygame.display.list_modes()
 screenWidth = screenModes[0][0]
 screenHeight = screenModes[0][1]
 screenSize = screenWidth, screenHeight
-screen = pygame.display.set_mode(screenSiz, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
 
 
 r = 255
@@ -135,7 +135,9 @@ while True:
         ballTimer += 1
         
         foodMax = 12 * len(predators)
-        print foodMax, ballTimerMax
+        if foodMax > 12*4:
+            foodMax = 12*2
+        #print foodMax, ballTimerMax
         
         if len(predators) <= 0:
             predatorRespawn = True
