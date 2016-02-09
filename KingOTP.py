@@ -14,7 +14,8 @@ screenModes = pygame.display.list_modes()
 screenWidth = screenModes[0][0]
 screenHeight = screenModes[0][1]
 screenSize = screenWidth, screenHeight
-screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(screenSize)#, pygame.FULLSCREEN)
+print screenSize
 
 
 r = 255
@@ -45,7 +46,7 @@ sizeCap = 5000
 menu = Menu(["Menu/MenuScreen.png"])
 wonMenu = Menu(["Menu/winScreen.png"])
 loseMenu = Menu(["Menu/loseScreen.png"])
-playButton = Button(["Menu/Start.png"],[500,920])
+playButton = Button(["Menu/Start.png"],[screenWidth/3.36,screenHeight/1.14])
 quitButton = Button(["Menu/Quit.png"],[1070,920])
 winPlayButton = Button(["Menu/winPlayAgain.png"],[800,920])
 winQuitButton = Button(["Menu/winQuit.png"],[1600,1000])
