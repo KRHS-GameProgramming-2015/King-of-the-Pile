@@ -16,7 +16,7 @@ screenHeight = screenModes[0][1]
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)#, pygame.FULLSCREEN)
 print screenSize
-
+originalScreenSize = [1680, 1050]
 
 r = 255
 g = 255
@@ -47,11 +47,32 @@ menu = Menu(["Menu/MenuScreen.png"])
 wonMenu = Menu(["Menu/winScreen.png"])
 loseMenu = Menu(["Menu/loseScreen.png"])
 playButton = Button(["Menu/Start.png"],[screenWidth/3.36,screenHeight/1.14])
-quitButton = Button(["Menu/Quit.png"],[1070,920])
-winPlayButton = Button(["Menu/winPlayAgain.png"],[800,920])
-winQuitButton = Button(["Menu/winQuit.png"],[1600,1000])
-losePlayButton = Button(["Menu/losePlayAgain.png"],[850,675])
-loseQuitButton = Button(["Menu/LoseQuit.png"],[840,1000])
+quitButton = Button(["Menu/Quit.png"],[screenWidth/1.57,screenHeight/1.14])
+winPlayButton = Button(["Menu/winPlayAgain.png"],[screenWidth/2.1,screenHeight/1.14])
+winQuitButton = Button(["Menu/winQuit.png"],[screenWidth/1.05,screenHeight/1.05])
+losePlayButton = Button(["Menu/losePlayAgain.png"],[screenWidth/1.98,screenHeight/1.56])
+loseQuitButton = Button(["Menu/LoseQuit.png"],[screenWidth/2,screenHeight/1.05])
+
+menu.image = pygame.transform.scale(menu.originalImage, screenSize) 
+menu.rect = menu.image.get_rect(center = menu.rect.center)
+wonMenu.image = pygame.transform.scale(wonMenu.originalImage, screenSize) 
+wonMenu.rect = wonMenu.image.get_rect(center = wonMenu.rect.center)
+loseMenu.image = pygame.transform.scale(loseMenu.originalImage, screenSize) 
+loseMenu.rect = loseMenu.image.get_rect(center = loseMenu.rect.center)
+
+playButton.image = pygame.transform.scale(playButton.originalImage, (screenSize[0]/originalScreenSize[0],screenSize[1]/originalScreenSize[1])) 
+playButton.rect = playButton.image.get_rect(center = playButton.rect.center)
+quitButton.image = pygame.transform.scale(quitButton.originalImage, (screenSize[0]/originalScreenSize[0],screenSize[1]/originalScreenSize[1])) 
+quitButton.rect = quitButton.image.get_rect(center = quitButton.rect.center)
+winPlayButton.image = pygame.transform.scale(winPlayButton.originalImage, (screenSize[0]/originalScreenSize[0],screenSize[1]/originalScreenSize[1])) 
+winPlayButton.rect = winPlayButton.image.get_rect(center = winPlayButton.rect.center)
+winQuitButton.image = pygame.transform.scale(winQuitButton.originalImage, (screenSize[0]/originalScreenSize[0],screenSize[1]/originalScreenSize[1])) 
+winQuitButton.rect = winQuitButton.image.get_rect(center = winQuitButton.rect.center)
+losePlayButton.image = pygame.transform.scale(losePlayButton.originalImage, (screenSize[0]/originalScreenSize[0],screenSize[1]/originalScreenSize[1])) 
+losePlayButton.rect = losePlayButton.image.get_rect(center = losePlayButton.rect.center)
+loseQuitButton.image = pygame.transform.scale(loseQuitButton.originalImage, (screenSize[0]/originalScreenSize[0],screenSize[1]/originalScreenSize[1])) 
+loseQuitButton.rect = loseQuitButton.image.get_rect(center = loseQuitButton.rect.center)
+
 
 mode = "menu"
 
