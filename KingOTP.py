@@ -14,7 +14,7 @@ screenModes = pygame.display.list_modes()
 screenWidth = screenModes[0][0]
 screenHeight = screenModes[0][1]
 screenSize = screenWidth, screenHeight
-screen = pygame.display.set_mode(screenSize)#, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
 print screenSize
 originalScreenSize = [1680, 1050]
 
